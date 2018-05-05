@@ -1,5 +1,5 @@
 # BDOInformer-RU-
-Discord BDOInformer bot
+Discord BDOInformer bot for RU claster
 
 ############
 ####SOFT####
