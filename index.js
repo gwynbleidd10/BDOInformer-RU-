@@ -16,7 +16,7 @@ client.on('guildMemberAdd', member => {
 client.on('message', message => {
     console.log(message.content);
     switch(message.content){
-        case prefix + 'h': message.reply("Список команд: \n!h - помощь\n"); break;
+        case prefix + 'h': message.reply("Список команд: \n!h - помощь\nЖду ваших идей и предложений\nСтраница проекта - https://github.com/gwynbleidd10/BDOInformer-RU-/edit/heroku/index.js\n"); break;
         case prefix + 'rofl': 
         /*var count = Math.floor(Math.random() * (client.users.array().length - 0)) + 0;
         var stat;
