@@ -18,16 +18,7 @@ client.on('ready', () => {
     console.log('BDOInformer started!');
     client.user.setActivity("Запускается...");    
     checkRasp();
-    status();
 });
-
-function status(){
-    if (isDay){
-        client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);}
-    else{
-        client.user.setActivity(`Ночь. ${endOfNight} мин.`);
-    }
-}
 
 client.on('guildMemberAdd', member => {    
     client.channels.get(general).send(`Приветствуем в ги НАВЬ, ${member}`);
@@ -136,6 +127,14 @@ function getTime(){
     time[1] = new Date().getUTCHours() + 3;
     time[2] = new Date().getMinutes(); 
 };
+
+function status(){
+    if (isDay){
+        client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);}
+    else{
+        client.user.setActivity(`Ночь. ${endOfNight} мин.`);
+    }
+}
 
 ////////////////////////////////////////
 /////////////////Bosses/////////////////
