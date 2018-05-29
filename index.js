@@ -12,37 +12,48 @@ const prefix = '!';
 /////////////////isDay?/////////////////
 ////////////////////////////////////////
 
-var raspTime = ['2:40','3:20','6:40','7:20','10:40','11:20','14:40','15:20','18:40','19:20','22:40','23:20'];
+var raspTime = [
+    ['2','40'],
+    ['3','20'],
+    ['6','40'],
+    ['7','20'],
+    ['10','40'],
+    ['11','20'],
+    ['14','40'],
+    ['15','20'],
+    ['18','40'],
+    ['19','20'],
+    ['22','40'],
+    ['23','20']
+];
 var isDay = true;
 var endOfNight = 0;
+var endOfDay = ['0','0'];
 var time = new Array;
 
-setInterval(checkResp, 60000);
+setInterval(checkRasp, 60000);
 
-function checkResp(){
+function checkRasp(){
     getTime();
     for(var i = 0; i < 12;){
-        var tmpTime;
-        tmpTime = `${time[1]}:${time[2] + 30}`;
-        if (tmpTime == raspTime[i]){
+        if ((time[1] == raspTime[i][0]) && (time[2] == (raspTime[i][1] - 30))){
             client.channels.get(main).send("@everyone, ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...");
-        }
-        tmpTime = `${time[1]}:${time[2]}`;        
-        if (tmpTime == raspTime[i]){
+        }    
+        if ((time[1] == raspTime[i][0]) && (time[2] == raspTime[i][1])){
             client.channels.get(main).send("@everyone, Наступила ночь, у вас есть 40 минут повышенного опыта. Приятного фарма!");
             isDay = false;
         }
-        tmpTime = `${time[1]}:${time[2]}`;
-        if (tmpTime == raspTime[i + 1]){
+        if ((time[1] == raspTime[i + 1][0]) && (time[2] == raspTime[i + 1][1])){
             client.channels.get(main).send("@everyone, И снова день, до следующей ночи 3 часа 20 минут. Расходимся!");
+            endOfDay[1] = raspTime[i + 2][0] - raspTime[i + 1][0];
             isDay = true;
         }           
         i += 2;
     }
-    nightTime();
+    dayNightTime();
 }
 
-function nightTime(){
+function dayNightTime(){
     if (!isDay){        
         if (time[2] > 20){
             endOfNight = 80 - time[2];
@@ -51,14 +62,23 @@ function nightTime(){
             endOfNight = 20 - time[2];
         }
     }    
+    else{
+        if ((40 - time[2]) < 0){
+            endOfDay[0] = 100 - time[2];
+            endOfDay[1] -= 1;
+        }
+        else{
+            endOfDay[0] = 40 - time[2];
+        }
+    }
 }
 
 function nowDay(){
     if (isDay){
-        return 'Сейчас день.';
+        return `Сейчас день. До наступления ночи осталось ${endOfDay[0]} ч. ${endOfDay[1]} мин.`;
     }
     else{
-        return `Сейчас ночь. Осталось ${endOfNight} мин.`;
+        return `Сейчас ночь. До наступления утра осталось ${endOfNight} мин.`;
     }
 }
 
