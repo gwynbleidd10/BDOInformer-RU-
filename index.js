@@ -16,12 +16,12 @@ client.login(ttoken);
 
 client.on('ready', () => {
     console.log('BDOInformer started!');
-    client.user.setActivity("Запускается...");
+    client.user.setActivity("Запускается...");    
+    checkRasp();
     status();
 });
 
 function status(){
-    checkRasp();
     if (isDay){
         client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);}
     else{
@@ -99,6 +99,7 @@ function checkRasp(){
         i += 2;
     }
     dayNightTime();
+    status();
 }
 
 function dayNightTime(){
@@ -119,7 +120,6 @@ function dayNightTime(){
             endOfDay[0] = 40 - time[2];
         }        
     }    
-    status();
 }
 
 function nowDay(){
