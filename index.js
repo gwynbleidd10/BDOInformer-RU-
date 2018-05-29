@@ -75,7 +75,7 @@ function dayNightTime(){
 
 function nowDay(){
     if (isDay){
-        return `Сейчас день. До наступления ночи осталось ${endOfDay[0]} ч. ${endOfDay[1]} мин.`;
+        return `Сейчас день. До наступления ночи осталось ${endOfDay[1]} ч. ${endOfDay[0]} мин.`;
     }
     else{
         return `Сейчас ночь. До наступления утра осталось ${endOfNight} мин.`;
