@@ -16,8 +16,7 @@ client.login(ttoken);
 
 client.on('ready', () => {
     console.log('BDOInformer started!');
-    client.user.setActivity("watching");
-    client.user.setGame("Nigga");//setPresence({ game: { name: 'Hello', type: 0 } });
+    client.user.setActivity("Запускается...");
 });
 
 client.on('guildMemberAdd', member => {    
@@ -102,7 +101,7 @@ function dayNightTime(){
         else{
             endOfNight = 20 - time[2];
         }
-        //client.user.setPresence({ game: { name: `Ночь. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`, type: 0 } });
+        //client.user.setActivity(`Ночь. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
     }    
     else{
         if ((40 - time[2]) < 0){
@@ -112,7 +111,7 @@ function dayNightTime(){
         else{
             endOfDay[0] = 40 - time[2];
         }
-        //client.user.setPresence({ game: { name: `День. ${endOfNight} мин.`, type: 0 } });
+        //client.user.setActivity(`День. ${endOfNight} мин.`);
     }
 }
 
