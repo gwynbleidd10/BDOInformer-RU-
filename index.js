@@ -17,6 +17,12 @@ client.login(ttoken);
 client.on('ready', () => {
     console.log('BDOInformer started!');
     client.user.setActivity("Запускается...");
+    checkRasp();
+    if (isDay){
+        client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);}
+    else{
+        client.user.setActivity(`Ночь. ${endOfNight} мин.`);
+    }
 });
 
 client.on('guildMemberAdd', member => {    
@@ -27,13 +33,7 @@ client.on('message', message => {
     console.log(message.content);
     switch(message.content){
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - День или ночь? Оставшееся время."); break;
-        case prefix + 'day': 
-            message.reply(nowDay()); 
-            if (!isDay){
-                client.user.setActivity(`Ночь. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);}
-            else{
-                client.user.setActivity(`День. ${endOfNight} мин.`);
-            } break;        
+        case prefix + 'day': message.reply(nowDay()); break;        
     }
 });
 
@@ -68,7 +68,6 @@ var endOfNight = 0;
 var endOfDay = ['0','0'];
 var time = new Array;
 
-checkRasp();
 setInterval(checkRasp, 60000);
 
 function checkRasp(){
