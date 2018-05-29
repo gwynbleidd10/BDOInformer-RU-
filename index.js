@@ -1,3 +1,7 @@
+var boss = require('./bossresp');
+
+var d = new Date().toUTCString();
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
@@ -17,14 +21,14 @@ client.on('message', message => {
     console.log(message.content);
     switch(message.content){
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n"); break;
-        case prefix + 'rofl': 
+        case prefix + 'resp': console.log(d); break;
         /*var count = Math.floor(Math.random() * (client.users.array().length - 0)) + 0;
         var stat;
         if (Math.floor((Math.random() * (2 - 0)) + 0) == true){
             stat = 'бомж!';
         }
-        else stat = 'не бомж!';client.users.array()[count] + stat*/
-        message.reply(':P'); break;
+        else stat = 'не бомж!';client.users.array()[count] + stat*\/
+        message.reply(':P'); break;*/
     }
 });
 
