@@ -9,6 +9,38 @@ var main = '438294563719872513';
 const prefix = '!';
 
 ////////////////////////////////////////
+//////////////////Main//////////////////
+////////////////////////////////////////
+
+client.login(ttoken);
+
+client.on('ready', () => {
+    console.log('BDOInformer started!');
+    client.user.setActivity("watching");
+    client.user.setGame("Nigga");//setPresence({ game: { name: 'Hello', type: 0 } });
+});
+
+client.on('guildMemberAdd', member => {    
+    client.channels.get(general).send(`Приветствуем в ги НАВЬ, ${member}`);
+});
+
+client.on('message', message => {
+    console.log(message.content);
+    switch(message.content){
+        case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - День или ночь? Оставшееся время."); break;
+        case prefix + 'day': message.reply(nowDay()); break;        
+    }
+});
+
+/*var count = Math.floor(Math.random() * (client.users.array().length - 0)) + 0;
+        var stat;
+        if (Math.floor((Math.random() * (2 - 0)) + 0) == true){
+            stat = 'бомж!';
+        }
+        else stat = 'не бомж!';client.users.array()[count] + stat*\/
+        message.reply(':P'); break;*/
+
+////////////////////////////////////////
 /////////////////isDay?/////////////////
 ////////////////////////////////////////
 
@@ -114,34 +146,3 @@ var boss = [
     //['Каранда','Древень','Кзарка','Нубэр','Кутум','Трусливый бхег','Грязь','Красный нос']
 ];
 var raspBoss = [];
-
-////////////////////////////////////////
-//////////////////Main//////////////////
-////////////////////////////////////////
-
-client.login(ttoken);
-
-client.on('ready', () => {
-    console.log('BDOInformer started!');
-    client.user.setActivity("watching").setGame("Nigga");//setPresence({ game: { name: 'Hello', type: 0 } });
-});
-
-client.on('guildMemberAdd', member => {    
-    client.channels.get(general).send(`Приветствуем в ги НАВЬ, ${member}`);
-});
-
-client.on('message', message => {
-    console.log(message.content);
-    switch(message.content){
-        case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - День или ночь? Оставшееся время."); break;
-        case prefix + 'day': message.reply(nowDay()); break;        
-    }
-});
-
-/*var count = Math.floor(Math.random() * (client.users.array().length - 0)) + 0;
-        var stat;
-        if (Math.floor((Math.random() * (2 - 0)) + 0) == true){
-            stat = 'бомж!';
-        }
-        else stat = 'не бомж!';client.users.array()[count] + stat*\/
-        message.reply(':P'); break;*/
