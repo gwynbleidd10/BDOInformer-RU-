@@ -35,8 +35,14 @@ checkRasp();
 setInterval(checkRasp, 60000);
 
 function checkRasp(){
-    getTime();
+    getTime();    
     for(var i = 0; i < 12;){
+        if (time[1] > raspTime[i + 2][[0]]){
+            endOfDay[1] = 0;
+        }
+        else{
+            endOfDay[1] = raspTime[i + 2][0] - time[1];
+        }
         if ((time[1] == raspTime[i][0]) && (time[2] == (raspTime[i][1] - 30))){
             client.channels.get(main).send("@everyone, ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...");
         }    
