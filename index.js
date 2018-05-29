@@ -31,6 +31,7 @@ var endOfNight = 0;
 var endOfDay = ['0','0'];
 var time = new Array;
 
+checkRasp();
 setInterval(checkRasp, 60000);
 
 function checkRasp(){
