@@ -101,7 +101,7 @@ function dayNightTime(){
         else{
             endOfNight = 20 - time[2];
         }
-        client.user.setActivity(`Ночь. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
+        client.user.setActivity("2");//`Ночь. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
     }    
     else{
         if ((40 - time[2]) < 0){
@@ -111,7 +111,7 @@ function dayNightTime(){
         else{
             endOfDay[0] = 40 - time[2];
         }
-        client.user.setActivity(`День. ${endOfNight} мин.`);
+        client.user.setActivity("1");//`День. ${endOfNight} мин.`);
     }
 }
 
