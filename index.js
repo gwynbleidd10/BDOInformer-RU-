@@ -70,6 +70,7 @@ function dayNightTime(){
         else{
             endOfNight = 20 - time[2];
         }
+        client.user.setStatus(`Ночь. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
     }    
     else{
         if ((40 - time[2]) < 0){
@@ -79,6 +80,7 @@ function dayNightTime(){
         else{
             endOfDay[0] = 40 - time[2];
         }
+        client.user.setStatus(`День. ${endOfNight} мин.`);
     }
 }
 
