@@ -99,6 +99,7 @@ function checkRasp(){
         i += 2;
     }
     dayNightTime();
+    status();
 }
 
 function dayNightTime(){
