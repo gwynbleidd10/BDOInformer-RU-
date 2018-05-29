@@ -27,7 +27,13 @@ client.on('message', message => {
     console.log(message.content);
     switch(message.content){
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - День или ночь? Оставшееся время."); break;
-        case prefix + 'day': message.reply(nowDay()); break;        
+        case prefix + 'day': 
+            message.reply(nowDay()); 
+            if (!isDay){
+                client.user.setActivity(`Ночь. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);}
+            else{
+                client.user.setActivity(`День. ${endOfNight} мин.`);
+            } break;        
     }
 });
 
@@ -100,8 +106,7 @@ function dayNightTime(){
         }
         else{
             endOfNight = 20 - time[2];
-        }
-        client.user.setActivity("2");//`Ночь. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
+        }        
     }    
     else{
         if ((40 - time[2]) < 0){
@@ -110,8 +115,7 @@ function dayNightTime(){
         }
         else{
             endOfDay[0] = 40 - time[2];
-        }
-        client.user.setActivity("1");//`День. ${endOfNight} мин.`);
+        }        
     }
 }
 
