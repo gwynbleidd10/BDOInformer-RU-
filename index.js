@@ -20,7 +20,7 @@ client.on('message', message => {
     console.log(message.content);
     switch(message.content){
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n"); break;
-        case prefix + 'resp': message.reply(d); break;
+        case prefix + 'resp': message.reply(boss); break;
         /*var count = Math.floor(Math.random() * (client.users.array().length - 0)) + 0;
         var stat;
         if (Math.floor((Math.random() * (2 - 0)) + 0) == true){
