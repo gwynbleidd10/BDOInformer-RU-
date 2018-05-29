@@ -1,6 +1,5 @@
 var boss = require('./bossresp');
 
-var d = new Date().toUTCString();
 
 const Discord = require('discord.js');
 const client = new Discord.Client();

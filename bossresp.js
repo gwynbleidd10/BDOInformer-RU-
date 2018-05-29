@@ -1,4 +1,8 @@
+module.exports = time;
+
 var bosses = ['Каранда','Древень','Кзарка','Нубэр','Кутум','Трусливый бхег','Грязь','Красный нос'];
 
+var day = new Date().getDay();
+var time = new Date().getHours();
 
-module.exports = bosses;
+//console.log(time);
