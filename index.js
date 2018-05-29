@@ -123,7 +123,7 @@ client.login(ttoken);
 
 client.on('ready', () => {
     console.log('BDOInformer started!');
-    client.user.setGame("Hello!");
+    client.setGame("Hello!");
 });
 
 client.on('guildMemberAdd', member => {    
