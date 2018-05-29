@@ -17,13 +17,17 @@ client.login(ttoken);
 client.on('ready', () => {
     console.log('BDOInformer started!');
     client.user.setActivity("Запускается...");
+    status();
+});
+
+function status(){
     checkRasp();
     if (isDay){
         client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);}
     else{
         client.user.setActivity(`Ночь. ${endOfNight} мин.`);
     }
-});
+}
 
 client.on('guildMemberAdd', member => {    
     client.channels.get(general).send(`Приветствуем в ги НАВЬ, ${member}`);
@@ -69,7 +73,6 @@ var endOfDay = ['0','0'];
 var time = new Array;
 
 setInterval(checkRasp, 60000);
-
 function checkRasp(){
     getTime();    
     for(var i = 0; i < 12;){
