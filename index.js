@@ -99,7 +99,6 @@ function checkRasp(){
         i += 2;
     }
     dayNightTime();
-    status();
 }
 
 function dayNightTime(){
@@ -119,7 +118,8 @@ function dayNightTime(){
         else{
             endOfDay[0] = 40 - time[2];
         }        
-    }
+    }    
+    status();
 }
 
 function nowDay(){
