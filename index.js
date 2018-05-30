@@ -297,6 +297,7 @@ function whoNext(){
             break;
         }
     }
+    console.log(nDay);
     if (nDay){
         if (time[0] < 7){
             return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0] + 1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\nне пропустите!\r\n\`\`\``; 
