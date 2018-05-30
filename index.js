@@ -34,7 +34,8 @@ client.on('message', message => {
     console.log(message.content);
     switch(message.content){
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - День или ночь? Оставшееся время."); break;
-        case prefix + 'day': message.reply(nowDay()); break;        
+        case prefix + 'day': message.reply(nowDay()); break;
+        case prefix + 'boss': message.reply(checkBoss()); break;      
     }
 });
 
@@ -73,7 +74,6 @@ var endOfNight = 0;
 var endOfDay = ['0','0'];
 var time = new Array;
 var techStr;
-
 
 function getTime(){
     time[0] = new Date().getDay();  //День
@@ -218,6 +218,7 @@ function status(){
 /////////////////Bosses/////////////////
 ////////////////////////////////////////
 
+var bossResponse;
 var boss = [
     ['0:30','11:00','15:00','18:00','23:00'],
     ['Нубэр/Каранда','Кзарка','Кзарка/Нубэр','Кзарка/Кутум','Каранда/Нубэр'],
@@ -228,3 +229,18 @@ var boss = [
     ['Нубэр','Каранда/Нубэр','Квинт/Мурака','Офин','Каранда/Кутум'],
     ['Нубэр','Каранда/Кутум','Велл','Офин','Кзарка/Кутум']
 ];
+
+function checkBoss(){
+    for(var i = 0; i < 5; i++){
+
+        if (boss[time[0] - 1][i] == ''){
+            bossResponse = boss[time[0] - 1][i];
+        }
+        else{
+            bossResponse = 'В ближайшее время боссов не будет!';
+        }
+        return bossResponse;
+        //boss[time[0] - 1][i];
+    }
+    
+}
