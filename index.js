@@ -75,11 +75,12 @@ function getTech(){
     request(url, function(err, resp, html) {
         if (!err){
             const $ = cheerio.load(html);
-            techStr = $('li .threadinfo').attr('title').trim();
-            console.log(techStr.substr(9,2) + time[3]);
-            if (time[0] == techStr.substr(8,2)){
-
+            techStr = $('li .threadinfo').attr('title').trim();            
+            if (time[3] == techStr.substr(8,2)){
+                techTime[0] = techStr.substr(22, 1);
+                techTime[1] = techStr.substr(30, 2);
             }
+            console.log(techTime);
         }
     });
 }
