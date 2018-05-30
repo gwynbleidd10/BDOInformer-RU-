@@ -58,7 +58,9 @@ var raspTime = [
     ['22','40'],
     ['23','20']
 ];
+var techTime = ['8','12'];
 var isDay = true;
+var isTech = false;
 var endOfNight = 0;
 var endOfDay = ['0','0'];
 var time = new Array;
@@ -67,6 +69,13 @@ setInterval(checkRasp, 60000);
 function checkRasp(){
     getTime();    
     for(var i = 0; i < 12;){        
+        if ((time[0] == 3) && (time[1] >= techTime[0]) && (time[1] <= techTime[1]) ){
+            isTech = true;
+            break;
+        }
+        else{
+            isTech = false;
+        }
         if ((time[1] == raspTime[i][0]) && (time[2] == (raspTime[i][1] - 30))){
             client.channels.get(main).send("@everyone, ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...");
             break;
@@ -142,8 +151,12 @@ function getTime(){
 };
 
 function status(){
-    if (isDay){
-        client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);}
+    if (isTech){
+        client.user.setActivity(`Техработы!`);
+    }
+    else if (isDay){
+        client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
+    }
     else{
         client.user.setActivity(`Ночь. ${endOfNight} мин.`);
     }
