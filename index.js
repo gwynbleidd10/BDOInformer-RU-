@@ -149,7 +149,7 @@ function checkRasp(){
             }   
         }
     }
-    console.log(`День: ${time[0]}. Время: ${time[1]}:${time[2]}. День: ${isDay}. Техработы: ${isTech} ${techTime}`);
+    console.log(`Время: ${time}. День: ${isDay}. Техработы: ${isTech} ${techTime} ${endofTech}`);
     dayNightTime();
     status();
 }
