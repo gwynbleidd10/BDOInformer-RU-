@@ -75,6 +75,7 @@ function getTech(){
         if (!err){
             const $ = cheerio.load(html);
             techStr = $('li .threadinfo').attr('title');
+            console.log(techStr);
         }
     });
 }
