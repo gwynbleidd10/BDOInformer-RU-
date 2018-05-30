@@ -233,11 +233,11 @@ var boss = [
 function checkBoss(){
     for(var i = 0; i < 5; i++){
 
-        if (boss[time[0]][i] != ''){
-            bossResponse += boss[time[0] - 1][i] + '\t\n';
+        if (boss[time[0]][i] == ''){
+            bossResponse = 'В ближайшее время боссов не будет!';            
         }
         else{
-            bossResponse = 'В ближайшее время боссов не будет!';
+            bossResponse += boss[time[0] - 1][i] + '\t\n';
         }
         return bossResponse;
         //boss[time[0] - 1][i];
