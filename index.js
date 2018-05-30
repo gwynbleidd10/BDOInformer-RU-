@@ -20,6 +20,7 @@ client.login(ttoken);
 client.on('ready', () => {
     console.log('BDOInformer started!');
     client.user.setActivity("Запускается...");    
+    getTech();
     checkRasp();
 });
 
@@ -126,6 +127,7 @@ function checkRasp(){
             }
         }   
     }
+    console.log(`День: ${time[0]}. Время: ${time[1]}:${time[2]}. День: ${isDay}. Техработы: ${isTech}`);
     dayNightTime();
     status();
 }
