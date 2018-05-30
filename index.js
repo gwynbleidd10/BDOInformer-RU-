@@ -237,11 +237,9 @@ function checkBoss(){
             bossResponse = 'В ближайшее время боссов не будет!';            
         }
         else{
-            bossResponse += boss[time[0] - 1][i] + '\t\n';
-        }
-        return bossResponse;
+            bossResponse += boss[time[0]][i] + '\t\n';
+        }        
         //boss[time[0] - 1][i];
-        i += 1;
     }
-    
+    return bossResponse;    
 }
