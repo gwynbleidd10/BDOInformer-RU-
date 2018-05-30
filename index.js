@@ -288,14 +288,24 @@ function whoNext(){
         if ((time[1] >= tmpSep[0]) && (time[2] >= tmpSep[1]))
         {}
         else{
-            return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0]][i]} =\r\nв\r\n= ${boss[0][i]} =\r\nне пропустите!\r\n\`\`\``;  
+            if (boss[time[0]][i] != ''){
+                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0]][i]} =\r\nв\r\n= ${boss[0][i]} =\r\nне пропустите!\r\n\`\`\``;
+            }
+            else{
+                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0]][i + 1]} =\r\nв\r\n= ${boss[0][i + 1]} =\r\nне пропустите!\r\n\`\`\``;
+            }
             nDay = false;          
             break;
         }
     }
     if (nDay){
         if (time[0] < 7){
-            return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0] + 1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\nне пропустите!\r\n\`\`\``; 
+            if (boss[time[0] + 1][0] != ''){
+                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0] + 1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\nне пропустите!\r\n\`\`\``;
+            }
+            else{
+                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0] + 1][1]} =\r\nв\r\n= ${boss[0][1]} =\r\nне пропустите!\r\n\`\`\``;
+            }             
         }
         else{
             return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\nне пропустите!\r\n\`\`\``; 
