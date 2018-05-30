@@ -64,7 +64,7 @@ var raspTime = [
     ['22','40'],
     ['23','20']
 ];
-var techTime = ['8','12','0'];
+var techTime = ['8','12','0', '0'];
 var isDay = true;
 var isTech = false;
 var newTech = false;
@@ -79,10 +79,11 @@ function getTech(){
         if (!err){
             const $ = cheerio.load(html);
             techStr = $('li .threadinfo').attr('title').trim();    
-            techTime[2] = techStr.substr(9,2);        
-            if (time[3] == techTime[2]){
+            techTime[3] = techStr.substr(9,2);        
+            if (time[3] == techTime[3]){
                 techTime[0] = techStr.substr(22, 1);
                 techTime[1] = techStr.substr(30, 2);
+                techTime[2] = techStr.substr(34, 2); 
             }
         }
     });
@@ -94,7 +95,7 @@ function checkRasp(){
     for(var i = 0; i < 12;){  
         if (isTech){
             //Проверка Техработ
-            if ((time[3] == techTime[2]) && ((time[1] - 5) <= techTime[1]) ){
+            if ((time[3] == techTime[3]) && ((time[2] - 5) <= techTime[2]) ){
                 isTech = false;
                 newTech = true;
                 break;
@@ -105,7 +106,7 @@ function checkRasp(){
         }
         else{
             //Проверка техработ
-            if ((time[3] == techTime[2]) && (time[1] >= techTime[0])){
+            if ((time[3] == techTime[3]) && (time[1] >= techTime[0])){
                 isTech = true;
                 endofTech[1] = techTime[1] - time[1] - 1;
                 endofTech[0] = 59 - time[2];
