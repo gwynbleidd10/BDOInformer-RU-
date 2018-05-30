@@ -100,14 +100,14 @@ function checkRasp(){
                 break;
             }
             //Конец Техработ
-            endofTech[1] = techTime[1] - time[1];
+            endofTech[1] = techTime[1] - time[1] - 1;
             endofTech[0] = 59 - time[2];
         }
         else{
             //Проверка техработ
             if ((time[3] == techTime[2]) && (time[1] >= techTime[0])){
                 isTech = true;
-                endofTech[1] = techTime[1] - time[1];
+                endofTech[1] = techTime[1] - time[1] - 1;
                 endofTech[0] = 59 - time[2];
                 break;
             }
