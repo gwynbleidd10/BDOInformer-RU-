@@ -233,7 +233,7 @@ var boss = [
 function checkBoss(){    
     //for(var i = 0; i < 5; i++){
         //if ((`${time[1]}:${time[2] + 30}`) == boss[0][i]){
-            client.channels.get(main).send("@everyone ```asciidoc\r\nПриближается большой и страшный босс\r\n= Orange =\r\nу вас есть 30 минут на то что бы добежать до места его респа! Удачи!\r\n```");
+            client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nПриближается большой и страшный босс\r\n= ${} =\r\nу вас есть 30 минут на то что бы добежать до места его респа! Удачи!\r\n\`\`\``);
         //}
 
 
