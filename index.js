@@ -75,7 +75,7 @@ function checkRasp(){
                 endOfDay[1] = raspTime[i + 2][0] - time[1];
             }
         }        
-        else {
+        else if (time[1] >= 22){
             if ((raspTime[0][0] - time[1]) < 0){
                 endOfDay[1] = 26 - time[1];
             }
