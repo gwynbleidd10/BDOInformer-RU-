@@ -136,7 +136,10 @@ function dayNightTime(){
 }
 
 function nowDay(){
-    if (isDay){
+    if (isTech){
+        return `Техработы!`;
+    }
+    else if (isDay){
         return `Сейчас день. До наступления ночи осталось ${endOfDay[1]} ч. ${endOfDay[0]} мин.`;
     }
     else{
