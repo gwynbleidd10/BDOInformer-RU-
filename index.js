@@ -76,7 +76,7 @@ function getTech(){
         if (!err){
             const $ = cheerio.load(html);
             techStr = $('li .threadinfo').attr('title');
-            console.log(time[0] + techStr.substr(8,2));
+            console.log(techStr.substr(8,2) + time[3]);
             if (time[0] == techStr.substr(8,2)){
 
             }
@@ -172,6 +172,7 @@ function getTime(){
     time[0] = new Date().getDay();
     time[1] = new Date().getUTCHours() + 3;
     time[2] = new Date().getMinutes(); 
+    time[3] = new Date().getUTCDate();
 };
 
 function status(){
