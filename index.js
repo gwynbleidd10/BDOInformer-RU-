@@ -285,11 +285,13 @@ function whoNext(){
     var nDay = true;
     for(var i = 0; i < 5; i++){
         var tmpSep = boss[0][i].split(':');
+        console.log(`split :${tmpSep[0]}: ${tmpSep[1]} time: ${time[1]}: ${time[2]}`);
         if ((time[1] > tmpSep[0]) && (time[2] > tmpSep[1]))
         {
-
+            console.log("true");
         }
         else{
+            console.log("false");
             return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0]][i]} =\r\nв\r\n= ${boss[0][i]} =\r\nне пропустите!\r\n\`\`\``;  
             nDay = false;          
             break;
