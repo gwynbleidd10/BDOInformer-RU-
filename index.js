@@ -225,7 +225,7 @@ function status(){
 setInterval(checkBoss, 60000);
 
 var boss = [
-    ['0:30','11:00','15:00','18:00','20:10'],
+    ['0:30','11:00','15:00','18:00','20:12'],
     ['Нубэр/Каранда','Кзарка','Кзарка/Нубэр','Кзарка/Кутум','Каранда/Нубэр'],
     ['Офин','Кзарка','Кзарка/Кутум','Кзарка/Нубэр','Каранда/Кутум'],
     ['Нубэр','Нубэр','Кзарка/Кутум','Кзарка/Нубэр','Каранда/Кзарка'],
@@ -258,7 +258,6 @@ function checkBoss(){
             client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nПоявился большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nу вас есть 15 минут что бы убить босса!\r\n\`\`\``);
             break;
         }
-        console.log(`${time[1]}:${time[2]}`);
         if ((time[2] + 15) > 59){
             if ((time[1] + 1) > 23){
                 tmpTime = `${23 - time[1]}:${time[2] - 45}`;
@@ -273,6 +272,7 @@ function checkBoss(){
         if (tmpTime == boss[0][i]){
             client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nБыл убит большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nследующий босс в \r\n= ${boss[0][i + 1]} =\r\nне пропустите!\r\n\`\`\``);
             break;
-        }
+        }        
+        console.log(tmpTime);
     }  
 }
