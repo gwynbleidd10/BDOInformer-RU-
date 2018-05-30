@@ -1,4 +1,7 @@
 const Discord = require('discord.js');
+var request = require('request');
+var cheerio = require('cheerio');
+
 const client = new Discord.Client();
 
 var ttoken = process.env.BOT_TOKEN;
@@ -64,6 +67,17 @@ var isTech = false;
 var endOfNight = 0;
 var endOfDay = ['0','0'];
 var time = new Array;
+var url = 'https://forum.gamenet.ru/forumdisplay.php?f=437';
+
+function getTech(){
+    request(url, function(err, resp, html) {
+        if (!err){
+            const $ = cheerio.load(html);
+            var asd = $('li .threadinfo').attr('title');
+            return asd;  
+        }
+    });
+}
 
 setInterval(checkRasp, 60000);
 function checkRasp(){
@@ -137,7 +151,7 @@ function dayNightTime(){
 
 function nowDay(){
     if (isTech){
-        return `Техработы!`;
+        getTech();
     }
     else if (isDay){
         return `Сейчас день. До наступления ночи осталось ${endOfDay[1]} ч. ${endOfDay[0]} мин.`;
