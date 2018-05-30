@@ -74,17 +74,29 @@ var endOfDay = ['0','0'];
 var time = new Array;
 var techStr;
 
+
+function getTime(){
+    time[0] = new Date().getDay();  //День
+    time[1] = new Date().getUTCHours() + 3; //Часы
+    time[2] = new Date().getMinutes();  //Минуты
+    time[3] = new Date().getUTCDate();  //Число
+};
+
 function getTech(){
     request('https://forum.gamenet.ru/forumdisplay.php?f=437', function(err, resp, html) {
-        if (!err){
+        if (!err){            
             const $ = cheerio.load(html);
-            techStr = $('li .threadinfo').attr('title').trim();    
+            techStr = $('li .threadinfo').attr('title').trim(); 
+            console.log(`Данные о техработах получены: ${techStr}. День: ${techTime[3]}. Начало: ${techTime[0]}. Конец: ${techTime[1]} ч. ${techTime[2]} м.`);   
             techTime[3] = techStr.substr(9,2);        
             if (time[3] == techTime[3]){
                 techTime[0] = techStr.substr(22, 1);
                 techTime[1] = techStr.substr(30, 2);
                 techTime[2] = techStr.substr(34, 2); 
             }
+        }
+        else{
+            console.log("Ошибка получения данных о техработах.")
         }
     });
 }
@@ -188,23 +200,18 @@ function nowDay(){
     }
 }
 
-function getTime(){
-    time[0] = new Date().getDay();
-    time[1] = new Date().getUTCHours() + 3;
-    time[2] = new Date().getMinutes(); 
-    time[3] = new Date().getUTCDate();
-};
-
 function status(){
     if (isTech){
         client.user.setActivity(`Техработы. ${endofTech[1]} ч. ${endofTech[0]} мин.`);
     }
-    else if (isDay){
-        client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
-    }
     else{
-        client.user.setActivity(`Ночь. ${endOfNight} мин.`);
-    }
+        if (isDay){
+            client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
+        }
+        else{
+            client.user.setActivity(`Ночь. ${endOfNight} мин.`);
+        }
+    } 
 }
 
 ////////////////////////////////////////
@@ -212,13 +219,12 @@ function status(){
 ////////////////////////////////////////
 
 var boss = [
-    ['Каранда','Древень','Кзарка','Нубэр','Кутум'],
-    ['Каранда','Древень','Кзарка','Нубэр','Кутум'],
-    ['Каранда','Древень','Кзарка','Нубэр','Кутум'],
-    ['Каранда','Древень','Кзарка','Нубэр','Кутум'],
-    ['Каранда','Древень','Кзарка','Нубэр','Кутум'],
-    ['Каранда','Древень','Кзарка','Нубэр','Кутум'],
-    ['Каранда','Древень','Кзарка','Нубэр','Кутум']
-    //['Каранда','Древень','Кзарка','Нубэр','Кутум','Трусливый бхег','Грязь','Красный нос']
+    ['0:30','11:00','15:00','18:00','23:00'],
+    ['Нубэр/Каранда','Кзарка','Кзарка/Нубэр','Кзарка/Кутум','Каранда/Нубэр'],
+    ['Офин','Кзарка','Кзарка/Кутум','Кзарка/Нубэр','Каранда/Кутум'],
+    ['Нубэр','Нубэр','Кзарка/Кутум','Кзарка/Нубэр','Каранда/Кзарка'],
+    ['','Кутум','Кзарка/Нубэр','Каранда/Кутум','Кутум/Нубэр'],
+    ['','Каранда','Кзарка/Кутум','Каранда/Нубэр','Кзарка/Кутум'],
+    ['Нубэр','Каранда/Нубэр','Квинт/Мурака','Офин','Каранда/Кутум'],
+    ['Нубэр','Каранда/Кутум','Велл','Офин','Кзарка/Кутум']
 ];
-var raspBoss = [];
