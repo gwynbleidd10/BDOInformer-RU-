@@ -85,15 +85,18 @@ function checkRasp(){
         }
         if ((time[1] == raspTime[i][0]) && (time[2] == (raspTime[i][1] - 30))){
             client.channels.get(main).send("@everyone, ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...");
+            break;
         }    
         if ((time[1] == raspTime[i][0]) && (time[2] == raspTime[i][1])){
             client.channels.get(main).send("@everyone, Наступила ночь, у вас есть 40 минут повышенного опыта. Приятного фарма!");
             isDay = false;
+            break;
         }
         if ((time[1] == raspTime[i + 1][0]) && (time[2] == raspTime[i + 1][1])){
-            client.channels.get(main).send("@everyone, И снова день, до следующей ночи 3 часа 20 минут. Расходимся!");
-            endOfDay[1] = 3;//raspTime[i + 2][0] - raspTime[i + 1][0];
+            client.channels.get(main).send("@everyone, И снова день, до следующей ночи 3 часа 20 минут. Расходимся!");            
+            endOfDay[1] = 3;
             isDay = true;
+            break;
         }           
         i += 2;
     }
