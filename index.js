@@ -66,23 +66,7 @@ var time = new Array;
 setInterval(checkRasp, 60000);
 function checkRasp(){
     getTime();    
-    for(var i = 0; i < 12;){
-        if ((time[1] < 22) && (i < 10)){
-            if (time[1] > raspTime[i + 2][0]){
-                endOfDay[1] = 0;
-            }
-            else{
-                endOfDay[1] = raspTime[i + 2][0] - time[1];
-            }
-        }        
-        else if (time[1] >= 22){
-            if ((raspTime[0][0] - time[1]) < 0){
-                endOfDay[1] = 26 - time[1];
-            }
-            else{
-                endOfDay[1] = raspTime[0][0] - time[1];
-            }
-        }
+    for(var i = 0; i < 12;){        
         if ((time[1] == raspTime[i][0]) && (time[2] == (raspTime[i][1] - 30))){
             client.channels.get(main).send("@everyone, ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...");
             break;
@@ -97,8 +81,27 @@ function checkRasp(){
             endOfDay[1] = 3;
             isDay = true;
             break;
-        }           
-        i += 2;
+        }      
+        if ((time[1] < 22) && (i < 10)){
+            if (time[1] > raspTime[i + 2][0]){
+                i += 2;
+            }
+            else{
+                endOfDay[1] = raspTime[i + 2][0] - time[1];
+                break;
+            }
+        }        
+        else if (time[1] >= 22){
+            if ((raspTime[0][0] - time[1]) < 0){
+                endOfDay[1] = 26 - time[1];
+                break;
+            }
+            else{
+                endOfDay[1] = raspTime[0][0] - time[1];
+                break;
+            }
+        }     
+        //i += 2;
     }
     dayNightTime();
     status();
