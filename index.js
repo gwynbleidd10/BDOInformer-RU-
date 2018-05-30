@@ -250,6 +250,7 @@ function checkBoss(){
         else{
             tmpTime = `${time[1]}:${time[2] + 30}`;
         }
+        console.log(tmpTime);
         if (tmpTime == boss[0][i]){
             client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nВнимание! Приближается большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nу вас есть 30 минут что бы добежать до места его респа! Удачи!\r\n\`\`\``);
             break;
