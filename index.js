@@ -228,8 +228,6 @@ function status(){
 
 setInterval(checkBoss, 60000);
 
-var nextBoss;
-
 var boss = [
     ['0:30','11:00','15:00','18:00','23:00'],
     ['Нубэр/Каранда','Кзарка','Кзарка/Нубэр','Кзарка/Кутум','Каранда/Нубэр'],
@@ -265,25 +263,17 @@ function checkBoss(){
             if (time[0] < 7){
                 if (i < 4){
                     client.channels.get(main).send(`@everyone \`\`\`asciidoc\r\nБыл убит большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nследующий босс в \r\n= ${boss[time[0]][i + 1]} =\r\nне пропустите!\r\n\`\`\``);
-                    nextBoss[0] = boss[0][i + 1];
-                    nextBoss[1] = boss[time[0]][i + 1];
                 }
                 else{
                     client.channels.get(main).send(`@everyone \`\`\`asciidoc\r\nБыл убит большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nследующий босс в \r\n= ${boss[time[0]][i + 1]} =\r\nне пропустите!\r\n\`\`\``);
-                    nextBoss[0] = boss[0][0];
-                    nextBoss[1] = boss[time[0] + 1][0];
                 }
             }
             else{
                 if (i < 4){
                     client.channels.get(main).send(`@everyone \`\`\`asciidoc\r\nБыл убит большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nследующий босс в \r\n= ${boss[time[0]][i + 1]} =\r\nне пропустите!\r\n\`\`\``);
-                    nextBoss[0] = boss[0][i + 1];
-                    nextBoss[1] = boss[time[0]][i + 1];
                 }
                 else{
                     client.channels.get(main).send(`@everyone \`\`\`asciidoc\r\nБыл убит большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nследующий босс в \r\n= ${boss[time[0]][i + 1]} =\r\nне пропустите!\r\n\`\`\``);
-                    nextBoss[0] = boss[0][0];
-                    nextBoss[1] = boss[1][0];
                 }
             }
             break;
@@ -292,5 +282,25 @@ function checkBoss(){
 }  
 
 function whoNext(){
+    var nDay = true;
+    for(var i = 0; i < 5; i++){
+        var tmpSep = boss[0][i].split(':');
+        if ((time[1] > tmpSep[0]) && (time[2] > tmpSep[1]))
+        {
 
+        }
+        else{
+            return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0]][i]} =\r\nв\r\n= ${boss[0][i]} =\r\nне пропустите!\r\n\`\`\``;  
+            nDay = false;          
+            break;
+        }
+    }
+    if (nDay){
+        if (time[0] < 7){
+            return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0] + 1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\nне пропустите!\r\n\`\`\``; 
+        }
+        else{
+            return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\nне пропустите!\r\n\`\`\``; 
+        }        
+    }
 }
