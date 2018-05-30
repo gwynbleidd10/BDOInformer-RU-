@@ -75,7 +75,7 @@ function getTech(){
     request(url, function(err, resp, html) {
         if (!err){
             const $ = cheerio.load(html);
-            techStr = $('li .threadinfo').attr('title');
+            techStr = $('li .threadinfo').attr('title').trim();
             console.log(techStr.substr(8,2) + time[3]);
             if (time[0] == techStr.substr(8,2)){
 
