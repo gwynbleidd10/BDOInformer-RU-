@@ -76,7 +76,10 @@ function getTech(){
         if (!err){
             const $ = cheerio.load(html);
             techStr = $('li .threadinfo').attr('title');
-            console.log(techStr);
+            console.log(time[0] + techStr.substr(8,2));
+            if (time[0] == techStr.substr(8,2)){
+
+            }
         }
     });
 }
