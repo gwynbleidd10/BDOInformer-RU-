@@ -65,22 +65,23 @@ var raspTime = [
 var techTime = ['8','12'];
 var isDay = true;
 var isTech = false;
+var newTech = false;
+var endofTech = 0;
 var endOfNight = 0;
 var endOfDay = ['0','0'];
 var time = new Array;
 var techStr;
-var url = 'https://forum.gamenet.ru/forumdisplay.php?f=437';
 
 function getTech(){
-    request(url, function(err, resp, html) {
+    request('https://forum.gamenet.ru/forumdisplay.php?f=437', function(err, resp, html) {
         if (!err){
             const $ = cheerio.load(html);
-            techStr = $('li .threadinfo').attr('title').trim();            
-            if (time[3] == techStr.substr(8,2)){
+            techStr = $('li .threadinfo').attr('title').trim();    
+            techTime[2] = techStr.substr(9,2);        
+            if (time[3] == techTime[2]){
                 techTime[0] = techStr.substr(22, 1);
                 techTime[1] = techStr.substr(30, 2);
             }
-            console.log(techTime);
         }
     });
 }
@@ -88,48 +89,63 @@ function getTech(){
 setInterval(checkRasp, 60000);
 function checkRasp(){
     getTime();    
-    for(var i = 0; i < 12;){        
-        if ((time[0] == 3) && (time[1] >= techTime[0]) && (time[1] <= techTime[1]) ){
-            isTech = true;
-            break;
+    for(var i = 0; i < 12;){  
+        if (isTech){
+            //Проверка Техработ
+            if ((time[3] == techTime[2]) && ((time[1] - 5) <= techTime[1]) ){
+                isTech = false;
+                newTech = true;
+                break;
+            }
+            //Конец Техработ
+            endofTech[1] = techTime[1] - time[1];
+            endofTech[0] = 59 - time[2];
         }
         else{
-            isTech = false;
+            //Проверка техработ
+            if ((time[3] == techTime[2]) && (time[1] >= techTime[0])){
+                isTech = true;
+                endofTech[1] = techTime[1] - time[1];
+                endofTech[0] = 59 - time[2];
+                break;
+            }
+            //Время суток
+            if ((time[1] == raspTime[i][0]) && (time[2] == (raspTime[i][1] - 30))){
+                client.channels.get(main).send("@everyone, ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...");
+                break;
+            }    
+            if ((time[1] == raspTime[i][0]) && (time[2] == raspTime[i][1])){
+                client.channels.get(main).send("@everyone, Наступила ночь, у вас есть 40 минут повышенного опыта. Приятного фарма!");
+                isDay = false;
+                break;
+            }
+            if ((time[1] == raspTime[i + 1][0]) && (time[2] == raspTime[i + 1][1])){
+                client.channels.get(main).send("@everyone, И снова день, до следующей ночи 3 часа 20 минут. Расходимся!");            
+                endOfDay[1] = 3;
+                isDay = true;
+                break;
+            }
+            //Конец дня
+            if ((time[1] < 22) && (i < 10)){
+                if (time[1] > raspTime[i + 2][0]){
+                    i += 2;
+                }
+                else{
+                    endOfDay[1] = raspTime[i + 2][0] - time[1];
+                    break;
+                }
+            }        
+            else if (time[1] >= 22){
+                if ((raspTime[0][0] - time[1]) < 0){
+                    endOfDay[1] = 26 - time[1];
+                    break;
+                }
+                else{
+                    endOfDay[1] = raspTime[0][0] - time[1];
+                    break;
+                }
+            }   
         }
-        if ((time[1] == raspTime[i][0]) && (time[2] == (raspTime[i][1] - 30))){
-            client.channels.get(main).send("@everyone, ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...");
-            break;
-        }    
-        if ((time[1] == raspTime[i][0]) && (time[2] == raspTime[i][1])){
-            client.channels.get(main).send("@everyone, Наступила ночь, у вас есть 40 минут повышенного опыта. Приятного фарма!");
-            isDay = false;
-            break;
-        }
-        if ((time[1] == raspTime[i + 1][0]) && (time[2] == raspTime[i + 1][1])){
-            client.channels.get(main).send("@everyone, И снова день, до следующей ночи 3 часа 20 минут. Расходимся!");            
-            endOfDay[1] = 3;
-            isDay = true;
-            break;
-        }      
-        if ((time[1] < 22) && (i < 10)){
-            if (time[1] > raspTime[i + 2][0]){
-                i += 2;
-            }
-            else{
-                endOfDay[1] = raspTime[i + 2][0] - time[1];
-                break;
-            }
-        }        
-        else if (time[1] >= 22){
-            if ((raspTime[0][0] - time[1]) < 0){
-                endOfDay[1] = 26 - time[1];
-                break;
-            }
-            else{
-                endOfDay[1] = raspTime[0][0] - time[1];
-                break;
-            }
-        }   
     }
     console.log(`День: ${time[0]}. Время: ${time[1]}:${time[2]}. День: ${isDay}. Техработы: ${isTech}`);
     dayNightTime();
@@ -159,7 +175,7 @@ function dayNightTime(){
 function nowDay(){
     if (isTech){
         getTech();
-        return techStr;
+        return `Внимание, идут Техработы, осталось: ${endofTech}`;
     }
     else if (isDay){
         return `Сейчас день. До наступления ночи осталось ${endOfDay[1]} ч. ${endOfDay[0]} мин.`;
@@ -178,7 +194,7 @@ function getTime(){
 
 function status(){
     if (isTech){
-        client.user.setActivity(`Техработы!`);
+        client.user.setActivity(`Техработы. ${endofTech[1]} ч. ${endofTech[0]} мин.`);
     }
     else if (isDay){
         client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
