@@ -231,10 +231,10 @@ var boss = [
 ];
 
 function checkBoss(){
-    for(var i = 0; i < 5;){
+    for(var i = 0; i < 5; i++){
 
-        if (boss[time[0] - 1][i] == ''){
-            bossResponse = boss[time[0] - 1][i];
+        if (boss[time[0]][i] != ''){
+            bossResponse += boss[time[0] - 1][i] + '\t\n';
         }
         else{
             bossResponse = 'В ближайшее время боссов не будет!';
