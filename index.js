@@ -126,16 +126,16 @@ function checkRasp(){
             }
             //Время суток
             if ((time[1] == raspTime[i][0]) && (time[2] == (raspTime[i][1] - 30))){
-                client.channels.get(main).send("@everyone, ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...");
+                client.channels.get(main).send("@everyone ```ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...```");
                 break;
             }    
             if ((time[1] == raspTime[i][0]) && (time[2] == raspTime[i][1])){
-                client.channels.get(main).send("@everyone, Наступила ночь, у вас есть 40 минут повышенного опыта. Приятного фарма!");
+                client.channels.get(main).send("@everyone ```Наступила ночь, у вас есть 40 минут повышенного опыта. Приятного фарма!```");
                 isDay = false;
                 break;
             }
             if ((time[1] == raspTime[i + 1][0]) && (time[2] == raspTime[i + 1][1])){
-                client.channels.get(main).send("@everyone, И снова день, до следующей ночи 3 часа 20 минут. Расходимся!");            
+                client.channels.get(main).send("@everyone ```И снова день, до следующей ночи 3 часа 20 минут. Расходимся!```");            
                 endOfDay[1] = 3;
                 isDay = true;
                 break;
@@ -230,16 +230,20 @@ var boss = [
     ['Нубэр','Каранда/Кутум','Велл','Офин','Кзарка/Кутум']
 ];
 
-function checkBoss(){
-    for(var i = 0; i < 5; i++){
+function checkBoss(){    
+    //for(var i = 0; i < 5; i++){
+        //if ((`${time[1]}:${time[2] + 30}`) == boss[0][i]){
+            client.channels.get(main).send("@everyone ```asciidoc\r\nПриближается большой и страшный босс\r\n= Orange =\r\nу вас есть 30 минут на то что бы добежать до места его респа! Удачи!\r\n```");
+        //}
 
-        if (boss[time[0]][i] == ''){
-            bossResponse = 'В ближайшее время боссов не будет!';            
-        }
-        else{
-            bossResponse += boss[time[0]][i] + '\t\n';
-        }        
+
+        //if (boss[time[0]][i] == ''){
+        //    bossResponse = 'В ближайшее время боссов не будет!';            
+        //}
+       // else{
+        //    bossResponse = `${boss[time[0]][i]}`;
+        //}        
         //boss[time[0] - 1][i];
-    }
-    return bossResponse;    
+   //}
+    //return bossResponse;    
 }
