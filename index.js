@@ -231,7 +231,7 @@ var boss = [
 ];
 
 function checkBoss(){
-    for(var i = 0; i < 5; i += 1){
+    for(var i = 0; i < 5;){
 
         if (boss[time[0] - 1][i] == ''){
             bossResponse = boss[time[0] - 1][i];
@@ -241,6 +241,7 @@ function checkBoss(){
         }
         return bossResponse;
         //boss[time[0] - 1][i];
+        i += 1;
     }
     
 }
