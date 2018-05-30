@@ -75,6 +75,14 @@ function checkRasp(){
                 endOfDay[1] = raspTime[i + 2][0] - time[1];
             }
         }        
+        else{
+            if ((raspTime[0][0] - time[1]) < 0){
+                endOfDay[1] = 26 - time[1];
+            }
+            else{
+                endOfDay[1] = raspTime[0][0] - time[1];
+            }
+        }
         if ((time[1] == raspTime[i][0]) && (time[2] == (raspTime[i][1] - 30))){
             client.channels.get(main).send("@everyone, ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...");
         }    
@@ -84,7 +92,7 @@ function checkRasp(){
         }
         if ((time[1] == raspTime[i + 1][0]) && (time[2] == raspTime[i + 1][1])){
             client.channels.get(main).send("@everyone, И снова день, до следующей ночи 3 часа 20 минут. Расходимся!");
-            endOfDay[1] = raspTime[i + 2][0] - raspTime[i + 1][0];
+            endOfDay[1] = 3;//raspTime[i + 2][0] - raspTime[i + 1][0];
             isDay = true;
         }           
         i += 2;
