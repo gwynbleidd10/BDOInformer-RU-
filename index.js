@@ -177,7 +177,7 @@ function dayNightTime(){
 function nowDay(){
     if (isTech){
         getTech();
-        return `Внимание, идут Техработы, осталось: ${endofTech}`;
+        return `Внимание, идут Техработы, осталось ${endofTech[1]} ч. ${endofTech[0]} мин.`;
     }
     else if (isDay){
         return `Сейчас день. До наступления ночи осталось ${endOfDay[1]} ч. ${endOfDay[0]} мин.`;
