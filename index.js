@@ -21,7 +21,9 @@ client.on('ready', () => {
     console.log('BDOInformer started!');
     client.user.setActivity("Запускается...");    
     getTech();
+    console.log('getTech выполнен');
     checkRasp();
+    console.log('checkRasp выполнен');
 });
 
 client.on('guildMemberAdd', member => {    
@@ -62,7 +64,7 @@ var raspTime = [
     ['22','40'],
     ['23','20']
 ];
-var techTime = ['8','12'];
+var techTime = ['8','12','0'];
 var isDay = true;
 var isTech = false;
 var newTech = false;
