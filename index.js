@@ -67,14 +67,14 @@ var isTech = false;
 var endOfNight = 0;
 var endOfDay = ['0','0'];
 var time = new Array;
+var techStr;
 var url = 'https://forum.gamenet.ru/forumdisplay.php?f=437';
 
 function getTech(){
     request(url, function(err, resp, html) {
         if (!err){
             const $ = cheerio.load(html);
-            var asd = $('li .threadinfo').attr('title');
-            return asd;  
+            techStr = $('li .threadinfo').attr('title');
         }
     });
 }
@@ -152,6 +152,7 @@ function dayNightTime(){
 function nowDay(){
     if (isTech){
         getTech();
+        return techStr;
     }
     else if (isDay){
         return `Сейчас день. До наступления ночи осталось ${endOfDay[1]} ч. ${endOfDay[0]} мин.`;
