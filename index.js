@@ -37,7 +37,7 @@ client.on('message', message => {
     switch(message.content){
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - День или ночь? Оставшееся время."); break;
         case prefix + 'day': message.reply(nowDay()); break;
-        case prefix + 'boss': message.reply(checkBoss()); break;      
+        case prefix + 'boss': message.reply(whoNext()); break;      
     }
 });
 
@@ -224,8 +224,10 @@ function status(){
 
 setInterval(checkBoss, 60000);
 
+var nextBoss;
+
 var boss = [
-    ['0:30','11:00','15:00','18:00','20:15'],
+    ['0:30','11:00','15:00','18:00','23:00'],
     ['Нубэр/Каранда','Кзарка','Кзарка/Нубэр','Кзарка/Кутум','Каранда/Нубэр'],
     ['Офин','Кзарка','Кзарка/Кутум','Кзарка/Нубэр','Каранда/Кутум'],
     ['Нубэр','Нубэр','Кзарка/Кутум','Кзарка/Нубэр','Каранда/Кзарка'],
@@ -237,42 +239,54 @@ var boss = [
 
 function checkBoss(){    
     for(var i = 0; i < 5; i++){
-        var tmpTime;
+        var tmpSep = boss[0][i].split(':');
         //Проверка боссов
         if ((time[2] + 30) > 59){
-            if ((time[1] + 1) > 23){
-                tmpTime = `${23 - time[1]}:${time[2] - 63}`;
-            }
-            else{
-                tmpTime = `${time[1]}:${time[2] - 30}`;
-            }            
+            if (`${time[1] + 1}:${time[2] - 30}` == boss[0][i]){
+                client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nВнимание! Приближается большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nу вас есть 30 минут что бы добежать до места его респа! Удачи!\r\n\`\`\``);
+                break;
+            }         
         }
         else{
-            tmpTime = `${time[1]}:${time[2] + 30}`;
-        }        
-        if (tmpTime == boss[0][i]){
-            client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nВнимание! Приближается большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nу вас есть 30 минут что бы добежать до места его респа! Удачи!\r\n\`\`\``);
-            break;
-        }        
+            if (`${time[1]}:${time[2] + 30}` == boss[0][i]){
+                client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nВнимание! Приближается большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nу вас есть 30 минут что бы добежать до места его респа! Удачи!\r\n\`\`\``);
+                break;
+            }
+        }    
         if (`${time[1]}:${time[2]}` == boss[0][i]){
             client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nПоявился большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nу вас есть 15 минут что бы убить босса!\r\n\`\`\``);
             break;
         }
-        if ((time[2] + 15) > 59){
-            if ((time[1] + 1) > 23){
-                tmpTime = `${23 - time[1]}:${time[2] - 45}`;
+        if (`${time[1]}:${time[2]}` == (tmpSep[1] + 15)){   
+            if (time[0] < 7){
+                if (i < 4){
+                    client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nБыл убит большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nследующий босс в \r\n= ${boss[time[0]][i + 1]} =\r\nне пропустите!\r\n\`\`\``);
+                    nextBoss[0] = boss[0][i + 1];
+                    nextBoss[1] = boss[time[0]][i + 1];
+                }
+                else{
+                    client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nБыл убит большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nследующий босс в \r\n= ${boss[time[0]][i + 1]} =\r\nне пропустите!\r\n\`\`\``);
+                    nextBoss[0] = boss[0][0];
+                    nextBoss[1] = boss[time[0] + 1][0];
+                }
             }
             else{
-                tmpTime = `${time[1]}:${time[2] - 45}`;
-            }            
-        }
-        else{
-            tmpTime = `${time[1]}:${time[2] + 15}`;
-        }
-        if (tmpTime == (boss[0][i] + 15)){
-            client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nБыл убит большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nследующий босс в \r\n= ${boss[0][i + 1]} =\r\nне пропустите!\r\n\`\`\``);
+                if (i < 4){
+                    client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nБыл убит большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nследующий босс в \r\n= ${boss[time[0]][i + 1]} =\r\nне пропустите!\r\n\`\`\``);
+                    nextBoss[0] = boss[0][i + 1];
+                    nextBoss[1] = boss[time[0]][i + 1];
+                }
+                else{
+                    client.channels.get(develop).send(`everyone \`\`\`asciidoc\r\nБыл убит большой и страшный босс\r\n= ${boss[time[0]][i]} =\r\nследующий босс в \r\n= ${boss[time[0]][i + 1]} =\r\nне пропустите!\r\n\`\`\``);
+                    nextBoss[0] = boss[0][0];
+                    nextBoss[1] = boss[1][0];
+                }
+            }
             break;
-        }        
-        console.log(tmpTime);
-    }  
+        }  
+    }      
+}  
+
+function whoNext(){
+
 }
