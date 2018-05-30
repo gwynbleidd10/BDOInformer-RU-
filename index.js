@@ -67,7 +67,7 @@ setInterval(checkRasp, 60000);
 function checkRasp(){
     getTime();    
     for(var i = 0; i < 12;){
-        if (i < 10){
+        if ((i < 10) && (time[1] <= 22)){
             if (time[1] > raspTime[i + 2][0]){
                 endOfDay[1] = 0;
             }
@@ -75,7 +75,7 @@ function checkRasp(){
                 endOfDay[1] = raspTime[i + 2][0] - time[1];
             }
         }        
-        else{
+        else if ((i > 10) && (time[1] >= 22)) {
             if ((raspTime[0][0] - time[1]) < 0){
                 endOfDay[1] = 26 - time[1];
             }
