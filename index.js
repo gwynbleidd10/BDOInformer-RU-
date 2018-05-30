@@ -110,6 +110,7 @@ function checkRasp(){
     getTime();    
     for(var i = 0; i < 12;){  
         if (isTech){
+            /*
             //Проверка Техработ
             if ((time[3] == techTime[3]) && ((time[2] - 5) <= techTime[2]) ){
                 isTech = false;
@@ -119,8 +120,10 @@ function checkRasp(){
             //Конец Техработ
             endofTech[1] = techTime[1] - time[1] - 1;
             endofTech[0] = 59 - time[2];
+            */
         }
         else{
+            /*
             //Проверка техработ
             if ((time[3] == techTime[3]) && (time[1] >= techTime[0])){
                 isTech = true;
@@ -128,6 +131,7 @@ function checkRasp(){
                 endofTech[0] = 59 - time[2];
                 break;
             }
+            */
             //Время суток
             if ((time[1] == raspTime[i][0]) && (time[2] == (raspTime[i][1] - 30))){
                 client.channels.get(main).send("@everyone ```ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...```");
