@@ -100,8 +100,7 @@ function checkRasp(){
                 endOfDay[1] = raspTime[0][0] - time[1];
                 break;
             }
-        }     
-        //i += 2;
+        }   
     }
     dayNightTime();
     status();
