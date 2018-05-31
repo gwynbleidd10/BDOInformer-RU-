@@ -300,12 +300,7 @@ function whoNext(){
     var nDay = true;
     for(var i = 0; i < 5; i++){        
         var tmpSep = boss[0][i].split(':');
-        console.log(`Старт ${tmpSep[0]},${tmpSep[1]},${i},${(time[1] >= tmpSep[0]) && (time[2] >= tmpSep[1])}`);
-        if ((time[1] >= tmpSep[0]) && (time[2] >= tmpSep[1])){
-            continue;
-        }
-        else{
-            console.log(`Найден ${boss[time[0]][i]},${boss[time[0]][i + 1]},${boss[0][i]},${boss[0][i + 1]},${i}`);
+        if (((time[1] == tmpSep[0]) && (time[2] < tmpSep[1])) || (time[1] < tmpSep[0])){       
             if (boss[time[0]][i] != ''){
                 return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0]][i]} =\r\nв\r\n= ${boss[0][i]} =\r\nне пропустите!\r\n\`\`\``;
             }
@@ -326,7 +321,12 @@ function whoNext(){
             }             
         }
         else{
-            return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\nне пропустите!\r\n\`\`\``; 
+            if (boss[1][0] != ''){
+                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\nне пропустите!\r\n\`\`\``;
+            }
+            else{
+                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[1][1]} =\r\nв\r\n= ${boss[0][1]} =\r\nне пропустите!\r\n\`\`\``;
+            }
         }        
     }
 }
