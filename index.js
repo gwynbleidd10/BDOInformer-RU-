@@ -243,6 +243,7 @@ function checkBoss(){
     console.log("Проверка боссов выполнена");
     for(var i = 0; i < 5; i++){        
         var tmpSep = boss[0][i].split(':');
+        console.log(`${time[1]}:${time[2]}` == `${tmpSep[0]}:${tmpSep[1] + 15}`);
         console.log(`${i},${tmpSep[0]}:${tmpSep[1]},${time[1]}:${time[2]}, ${(`${time[1] + 1}:${time[2] - 30}` == boss[0][i]) || (`${time[1]}:${time[2] + 30}` == boss[0][i])},${(`${time[1]}:${time[2]}` == boss[0][i])},${(`${time[1]}:${time[2]}` == (tmpSep[1] + 15))}`);
         if ((`${time[1] + 1}:${time[2] - 30}` == boss[0][i]) || (`${time[1]}:${time[2] + 30}` == boss[0][i])){
             if (boss[time[0]][i] != ''){
@@ -256,7 +257,7 @@ function checkBoss(){
             }
             break;            
         }
-        if (`${time[1]}:${time[2]}` == (`${tmpSep[0]}:${tmpSep[1] + 24}`)){   
+        if (`${time[1]}:${time[2]}` == `${tmpSep[0]}:${tmpSep[1] + 15}`){   
             if (time[0] < 7){
                 if (i < 4){ 
                     if (boss[time[0]][i] != ''){
