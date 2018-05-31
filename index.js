@@ -80,7 +80,7 @@ var time = new Array;
 var techStr;
 
 function getTime(){
-    time[0] = new Date().getDay();  //День
+    time[0] = new Date().getUTCDay();  //День
     time[1] = new Date().getUTCHours() + 3; //Часы
     time[2] = new Date().getMinutes();  //Минуты
     time[3] = new Date().getUTCDate();  //Число
