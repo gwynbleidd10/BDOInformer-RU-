@@ -302,11 +302,10 @@ function whoNext(){
         var tmpSep = boss[0][i].split(':');
         console.log(`Старт ${tmpSep[0]},${tmpSep[1]},${i},${(time[1] >= tmpSep[0]) && (time[2] >= tmpSep[1])}`);
         if ((time[1] >= tmpSep[0]) && (time[2] >= tmpSep[1])){
-            console.log("Next");
             continue;
         }
         else{
-            console.log(`Найден ${time[0]},${time[1]},${time[2]},${i}`);
+            console.log(`Найден ${boss[time[0]][i]},${boss[time[0]][i + 1]},${boss[0][i]},${boss[0][i + 1]},${i}`);
             if (boss[time[0]][i] != ''){
                 return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0]][i]} =\r\nв\r\n= ${boss[0][i]} =\r\nне пропустите!\r\n\`\`\``;
             }
