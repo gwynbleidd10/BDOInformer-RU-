@@ -20,8 +20,8 @@ client.login(ttoken);
 client.on('ready', () => {
     console.log('BDOInformer started!');
     client.user.setActivity("Запускается...");    
-    getTech();
-    console.log('getTech выполнен');
+    //getTech();
+    //console.log('getTech выполнен');
     checkRasp();
     console.log('checkRasp выполнен');
     checkBoss();
