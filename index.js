@@ -138,12 +138,12 @@ function checkRasp(){
                 break;
             }    
             if ((time[1] == raspTime[i][0]) && (time[2] == raspTime[i][1])){
-                client.channels.get(main).send("@everyone ```Наступила ночь, у вас есть 40 минут повышенного опыта. Приятного фарма!```");
+                client.channels.get(main).send("```Наступила ночь, у вас есть 40 минут повышенного опыта. Приятного фарма!```");
                 isDay = false;
                 break;
             }
             if ((time[1] == raspTime[i + 1][0]) && (time[2] == raspTime[i + 1][1])){
-                client.channels.get(main).send("@everyone ```И снова день, до следующей ночи 3 часа 20 минут. Расходимся!```");            
+                client.channels.get(main).send("```И снова день, до следующей ночи 3 часа 20 минут. Расходимся!```");            
                 endOfDay[1] = 3;
                 isDay = true;
                 break;
@@ -300,10 +300,12 @@ function whoNext(){
     var nDay = true;
     for(var i = 0; i < 5; i++){
         var tmpSep = boss[0][i].split(':');
-        if ((time[1] >= tmpSep[0]) && (time[2] >= tmpSep[1]))        {
+        if ((time[1] >= tmpSep[0]) && (time[2] >= tmpSep[1])){
+            console.log("Next");
             continue;
         }
         else{
+            console.log(`Найден ${time[0]},${time[1]},${time[2]},${i}`);
             if (boss[time[0]][i] != ''){
                 return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[0]][i]} =\r\nв\r\n= ${boss[0][i]} =\r\nне пропустите!\r\n\`\`\``;
             }
