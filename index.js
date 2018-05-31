@@ -240,6 +240,7 @@ var boss = [
 ];
 
 function checkBoss(){    
+    console.log("Проверка боссов выполнена");
     for(var i = 0; i < 5; i++){
         var tmpSep = boss[0][i].split(':');
         if ((`${time[1] + 1}:${time[2] - 30}` == boss[0][i]) || (`${time[1]}:${time[2] + 30}` == boss[0][i])){
