@@ -256,7 +256,7 @@ function checkBoss(){
             }
             break;            
         }
-        if (`${time[1]}:${time[2]}` == (tmpSep[1] + 20)){   
+        if (`${time[1]}:${time[2]}` == (tmpSep[1] + 15)){   
             if (time[0] < 7){
                 if (i < 4){ 
                     if (boss[time[0]][i] != ''){
