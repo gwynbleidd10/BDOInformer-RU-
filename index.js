@@ -15,7 +15,7 @@ const prefix = '!'; //prefix бота
 
 const newPeople = true; //Приветствие новых пользователей
 const newPChannel = '343145719915479042'; //id канала для приветствия новых пользователей
-const newPMessage = `Приветствуем в ги НАВЬ, ${member}`; //Приветственное сообщения для новых пользователей
+const newPMessage = `Приветствуем в ги НАВЬ, `; //Приветственное сообщения для новых пользователей
 
 
 
@@ -40,7 +40,7 @@ client.on('ready', () => {
 //Приветствие новых пользователей
 client.on('guildMemberAdd', member => {   
     if (newPeople){
-        client.channels.get(newPChannel).send(newPMessage);
+        client.channels.get(newPChannel).send(newPMessage + `${member}`);
     }    
 });
 
