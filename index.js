@@ -4,22 +4,31 @@ var cheerio = require('cheerio');
 
 const client = new Discord.Client();
 
-var ttoken = process.env.BOT_TOKEN;
-//'NDQyMjUxMzI5OTg1ODM5MTA0.Dc8RJw.a32WaDN4-wV3SXootMlk71XZtv8';
-var general = '343145719915479042';
-var develop = '442299997048799253';
-var main = '438294563719872513';
-const prefix = '!';
+////////////////////////////////////////
+////////////////Settings////////////////
+////////////////////////////////////////
+
+const token = process.env.BOT_TOKEN; //BOT TOKEN
+const develop = '442299997048799253';
+const main = '438294563719872513'; //id канала для бота
+const prefix = '!'; //prefix бота
+
+const newPeople = true; //Приветствие новых пользователей
+const newPChannel = '343145719915479042'; //id канала для приветствия новых пользователей
+const newPMessage = `Приветствуем в ги НАВЬ, ${member}`; //Приветственное сообщения для новых пользователей
+
+
 
 ////////////////////////////////////////
 //////////////////Main//////////////////
 ////////////////////////////////////////
 
-client.login(ttoken);
+client.login(token);
 
+//Отладочная информация и первый запуск
 client.on('ready', () => {
     console.log('BDOInformer started!');
-    client.user.setActivity("Запускается...");    
+    client.user.setActivity("Запуск...");    
     //getTech();
     //console.log('getTech выполнен');
     checkRasp();
@@ -28,15 +37,14 @@ client.on('ready', () => {
     console.log('checkBoss выполнен');
 });
 
-client.on('guildMemberAdd', member => {    
-    client.channels.get(general).send(`Приветствуем в ги НАВЬ, ${member}`);
+//Приветствие новых пользователей
+client.on('guildMemberAdd', member => {   
+    if (newPeople){
+        client.channels.get(newPChannel).send(newPMessage);
+    }    
 });
 
-function asd(){
-    var options = { timeZone: 'Europe/Moscow' };
-    var formatter = new Date().toLocaleDateString('ru', options);
-    console.log(formatter);
-}
+//Основные команды
 client.on('message', message => {
     console.log(message.content);
     switch(message.content){
