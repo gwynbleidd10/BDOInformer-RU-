@@ -32,12 +32,22 @@ client.on('guildMemberAdd', member => {
     client.channels.get(general).send(`Приветствуем в ги НАВЬ, ${member}`);
 });
 
+function asd(){
+    var date = new Date();//(2014, 11, 31, 12, 30, 0);
+
+var formatter = new Intl.DateTimeFormat("ru", {
+  hour: "numeric",
+  minute: "numeric"
+});
+console.log(formatter.format(date)); // 12:30:00
+}
 client.on('message', message => {
     console.log(message.content);
     switch(message.content){
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - день или ночь. оставшееся время\n!boss - следующий босс"); break;
         case prefix + 'day': message.reply(nowDay()); break;
-        case prefix + 'boss': message.reply(whoNext()); break;      
+        case prefix + 'boss': message.reply(whoNext()); break;   
+        case prefix + 'test': message.reply(asd()); break;    
     }
 });
 
