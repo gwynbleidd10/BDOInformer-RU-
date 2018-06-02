@@ -34,7 +34,7 @@ client.on('guildMemberAdd', member => {
 
 function asd(){
     var options = { timeZone: 'Europe/Moscow' };
-    var formatter = new Intl.DateTimeFormat('ru', options);
+    var formatter = new Date().toLocaleDateString('ru', options);
     console.log(formatter);
 }
 client.on('message', message => {
