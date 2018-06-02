@@ -33,13 +33,9 @@ client.on('guildMemberAdd', member => {
 });
 
 function asd(){
-    var date = new Date();//(2014, 11, 31, 12, 30, 0);
-
-var formatter = new Intl.DateTimeFormat("ru", {
-  hour: "numeric",
-  minute: "numeric"
-});
-console.log(formatter.format(date)); // 12:30:00
+    var options = { timeZone: 'Europe/Moscow' };
+    var formatter = new Intl.DateTimeFormat('ru', options);
+    console.log(formatter);
 }
 client.on('message', message => {
     console.log(message.content);
