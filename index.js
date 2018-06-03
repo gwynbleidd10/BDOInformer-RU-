@@ -25,7 +25,7 @@ client.login(token);
 
 //Отладочная информация и первый запуск
 client.on('ready', () => {
-    console.log('BDOInformer started!');
+    console.log('BDOInformer запущен!');
     client.user.setActivity("Запуск...");    
     //getTech();
     //console.log('getTech выполнен');
@@ -47,7 +47,7 @@ client.on('message', message => {
     console.log(message.content);
     switch(message.content){
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - день или ночь. оставшееся время\n!boss - следующий босс"); break;
-        case prefix + 'day': message.reply(nowDay()); break;
+        //case prefix + 'day': message.reply(nowDay()); break;
         case prefix + 'boss': message.reply(whoNext()); break;   
         case prefix + 'test': message.reply('test'); break;    
     }
@@ -273,7 +273,8 @@ var boss = [
     ['Нубэр','Каранда/Кутум','Велл','Офин','Кзарка/Кутум']
 ];
 
-function checkBoss(){    
+function checkBoss(){ 
+    getTime();   
     for(var i = 0; i < 5; i++){        
         var tmpSep = boss[0][i].split(':');
         tmpSep[0] = parseInt(tmpSep[0]);
