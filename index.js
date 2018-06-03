@@ -29,8 +29,8 @@ client.on('ready', () => {
     client.user.setActivity("Запуск...");    
     //getTech();
     //console.log('getTech выполнен');
-    checkRasp();
-    console.log('checkRasp выполнен');
+    //checkRasp();
+    //console.log('checkRasp выполнен');
     checkBoss();
     console.log('checkBoss выполнен');
 });
@@ -57,7 +57,7 @@ client.on('message', message => {
 ////////////////Day/Night///////////////
 ////////////////////////////////////////
 
-setInterval(checkRasp, 60000);
+//setInterval(checkRasp, 60000);
 
 var raspTime = [
     ['2','40'],
