@@ -104,8 +104,8 @@ function getTime(){
             break;
         }
     }
-    time[2] = tmpTime[0]  //Часы
-    time[3] = tmpTime[1]  //Минуты
+    time[2] = parseInt(tmpTime[0]);  //Часы
+    time[3] = parseInt(tmpTime[1]);  //Минуты
 };
 
 function getTech(){
@@ -279,8 +279,11 @@ function checkBoss(){
         var tmpSep = boss[0][i].split(':');
         tmpSep[0] = parseInt(tmpSep[0]);
         tmpSep[1] = parseInt(tmpSep[1]);
-        console.log(`i = ${i}, sep = ${tmpSep[0]}:${tmpSep[1]}, ${time[2]}:${parseInt(time[3]) + 30}`);
-        if ((((time[2] + 1) == tmpSep[0]) && ((time[3] - 30) == tmpSep[1])) || ((time[2] == tmpSep[0]) && ((time[3] + 30) == tmpSep[1]))){
+        console.log(`i = ${i}, sep = ${tmpSep[0]}:${tmpSep[1]}, ${time[2]}:${time[3]}`);
+        console.log((((parseInt(time[2]) + 1) == tmpSep[0]) && ((parseInt(time[3]) - 30) == tmpSep[1])) || ((time[2] == tmpSep[0]) && ((parseInt(time[3]) + 30) == tmpSep[1])));
+        console.log((time[2] == tmpSep[0]) && (time[3] == tmpSep[1]));
+        console.log((time[2] == tmpSep[0]) && (time[3] == (tmpSep[1] + 15)));
+        if ((((parseInt(time[2]) + 1) == tmpSep[0]) && ((parseInt(time[3]) - 30) == tmpSep[1])) || ((time[2] == tmpSep[0]) && ((parseInt(time[3]) + 30) == tmpSep[1]))){
             if (boss[time[1]][i] != ''){
                 client.channels.get(main).send(`everyone \`\`\`asciidoc\r\nВнимание! Приближается большой и страшный босс\r\n= ${boss[time[1]][i]} =\r\nу вас есть 30 минут что бы добежать до места его респа! Удачи!\r\n\`\`\``);
                 break;
