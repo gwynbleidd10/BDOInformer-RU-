@@ -279,7 +279,7 @@ function checkBoss(){
         var tmpSep = boss[0][i].split(':');
         tmpSep[0] = parseInt(tmpSep[0]);
         tmpSep[1] = parseInt(tmpSep[1]);
-        console.log(`i = ${i}, sep = ${tmpSep[0]}:${tmpSep[1]}, ${time[2]}:${parseInt(time[3] + 30)}`);
+        console.log(`i = ${i}, sep = ${tmpSep[0]}:${tmpSep[1]}, ${time[2]}:${parseInt(time[3]) + 30}`);
         if ((((time[2] + 1) == tmpSep[0]) && ((time[3] - 30) == tmpSep[1])) || ((time[2] == tmpSep[0]) && ((time[3] + 30) == tmpSep[1]))){
             if (boss[time[1]][i] != ''){
                 client.channels.get(main).send(`everyone \`\`\`asciidoc\r\nВнимание! Приближается большой и страшный босс\r\n= ${boss[time[1]][i]} =\r\nу вас есть 30 минут что бы добежать до места его респа! Удачи!\r\n\`\`\``);
