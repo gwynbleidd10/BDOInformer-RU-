@@ -345,10 +345,10 @@ function whoNext(){
         tmpSep[1] = parseInt(tmpSep[1]);
         if (((time[2] == tmpSep[0]) && (time[3] < tmpSep[1])) || (time[2] < tmpSep[0])){       
             if (boss[time[1]][i] != ''){
-                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1]][i]} =\r\nв\r\n= ${boss[1][i]} =\r\nне пропустите!\r\n\`\`\``;
+                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1]][i]} =\r\nв\r\n= ${boss[0][i]} =\r\nне пропустите!\r\n\`\`\``;
             }
             else{
-                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1]][i + 1]} =\r\nв\r\n= ${boss[1][i + 1]} =\r\nне пропустите!\r\n\`\`\``;
+                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1]][i + 1]} =\r\nв\r\n= ${boss[0][i + 1]} =\r\nне пропустите!\r\n\`\`\``;
             }
             nDay = false;          
             break;
