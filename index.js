@@ -104,6 +104,7 @@ function getTime(){
             break;
         }
     }
+    time[1] = parseInt(time[1]);
     time[2] = parseInt(tmpTime[0]);  //Часы
     time[3] = parseInt(tmpTime[1]);  //Минуты
 };
