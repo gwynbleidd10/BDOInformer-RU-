@@ -202,8 +202,8 @@ function checkRasp(){
         }
     }
     console.log(`Время: ${time}. День: ${isDay}. Техработы: ${isTech} ${techTime} ${endofTech}`);
-    //dayNightTime();
-    //status();
+    dayNightTime();
+    status();
 }
 
 function dayNightTime(){
