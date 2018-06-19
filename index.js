@@ -165,7 +165,7 @@ function checkRasp(){
             */
             //Время суток
             if ((time[2] == raspTime[i][0]) && (time[3] == (raspTime[i][1] - 30))){
-                client.channels.get(timeChannel).send("@everyone ```ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...```");
+                client.channels.get(timeChannel).send("```ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...```");
                 break;
             }    
             if ((time[2] == raspTime[i][0]) && (time[3] == raspTime[i][1])){
