@@ -208,20 +208,20 @@ function checkRasp(){
 
 function dayNightTime(){
     if (!isDay){        
-        if (time[2] > 20){
-            endOfNight = 80 - time[2];
+        if (time[3] > 20){
+            endOfNight = 80 - time[3];
         }
         else{
-            endOfNight = 20 - time[2];
+            endOfNight = 20 - time[3];
         }        
     }    
     else{
-        if ((40 - time[2]) < 0){
-            endOfDay[0] = 100 - time[2];
+        if ((40 - time[3]) < 0){
+            endOfDay[0] = 100 - time[3];
             endOfDay[1] -= 1;
         }
         else{
-            endOfDay[0] = 40 - time[2];
+            endOfDay[0] = 40 - time[3];
         }        
     }    
 }
