@@ -152,6 +152,8 @@ function checkRasp(){
             }  
             if ((time[2] == techTime[0]) && (time[3] == 0)){
                 client.channels.get(timeChannel).send("```Тех. работы!```");
+            }
+            if (((time[2] == techTime[0]) && (time[3] == 0)) || ((time[2] >= techTime[0]) && (time[2] < techTime[1])) || ((time[2] == techTime[1]) && (time[3] == 0))){
                 isTech = true;
                 //endofTech[1] = techTime[1] - time[1] - 1;
                 //endofTech[0] = 59 - time[2];
