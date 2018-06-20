@@ -369,4 +369,5 @@ function whoNext(){
             }
         }        
     }
+    return `\r\ntest\r\nasd`;
 }
