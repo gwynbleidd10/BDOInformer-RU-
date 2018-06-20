@@ -194,7 +194,7 @@ function checkRasp(){
                 if (time[2] < raspTime[i][0]){                   
                     isDay = true;
                     endOfDay[1] = raspTime[i][0] - time[2];
-                    if (time[3] >= 40){
+                    if (time[3] > 40){
                         endOfDay[0] = 100 - time[3];
                         endOfDay[1] -= 1;
                     }
