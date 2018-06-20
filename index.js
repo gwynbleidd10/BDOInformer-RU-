@@ -220,6 +220,7 @@ function checkRasp(){
             console.log(`Время: ${time}. День: ${isDay}. Техработы: ${isTech} ${techTime} | ${endofTech}. Конец дня: ${endOfDay}. Конец Ночи: ${endOfNight}`);
         }
     }    
+    console.log(`Время: ${time}. День: ${isDay}. Техработы: ${isTech} ${techTime} | ${endofTech}. Конец дня: ${endOfDay}. Конец Ночи: ${endOfNight}`);
     status();
 }
 
