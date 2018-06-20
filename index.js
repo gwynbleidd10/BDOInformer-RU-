@@ -60,7 +60,7 @@ client.on('message', message => {
     }
 });
 
-function deaty(){
+function death(){
     return `Оглянись...`;
 }
 ////////////////////////////////////////
