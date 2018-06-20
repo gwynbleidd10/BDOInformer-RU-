@@ -370,5 +370,12 @@ function whoNext(){
             }
         }        
     }
-    return `${tmpStr}\r\ntest\r\nasd`;
+    var dn = ['Время/День','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
+    for(var i = 0; i < 8; i++){
+            tmpStr += `\r\n${dn[i]}:`;
+        for(var j = 0; i < 7; j++){       
+                tmpStr += ` ${boss[i][j]}`;
+        }
+    }
+    return tmpStr;
 }
