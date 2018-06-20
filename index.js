@@ -372,7 +372,7 @@ function whoNext(){
     }
     var dn = ['Время/День','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
     for(var i = 0; i < 8; i++){
-            tmpStr += `\r\n${dn[i]}:`;
+            tmpStr += `\r\n${dn[i]}:\t`;
         for(var j = 0; j < 6; j++){  
             if (boss[i][j] != ''){
                 tmpStr += `\t${boss[i][j]}`;
