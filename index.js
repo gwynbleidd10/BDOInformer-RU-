@@ -150,7 +150,7 @@ function checkRasp(){
             if ((time[2] == (techTime[0] - 1)) && (time[3] == 30)){
                 client.channels.get(timeChannel).send("```ВНИМАНИЕ! 30 минут до начала тех. работ!```");
             }  
-            if (time[2] == techTime[0]){
+            if ((time[2] == techTime[0]) && (time[3] == 0)){
                 client.channels.get(timeChannel).send("```Тех. работы!```");
                 isTech = true;
                 //endofTech[1] = techTime[1] - time[1] - 1;
