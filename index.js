@@ -217,10 +217,9 @@ function checkRasp(){
                     endOfDay[0] = (60 - time[3]) + 40;
                 }
             }
-            console.log("Цикл");
+            console.log(`Время: ${time}. День: ${isDay}. Техработы: ${isTech} ${techTime} | ${endofTech}. Конец дня: ${endOfDay}. Конец Ночи: ${endOfNight}`);
         }
-    }
-    console.log(`Время: ${time}. День: ${isDay}. Техработы: ${isTech} ${techTime} | ${endofTech}. Конец дня: ${endOfDay}. Конец Ночи: ${endOfNight}`);
+    }    
     status();
 }
 
