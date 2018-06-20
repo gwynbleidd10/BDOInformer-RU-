@@ -130,33 +130,28 @@ function getTech(){
     });
 }
 
-
 function checkRasp(){
     getTime();
-    if (isTech){
-        /*
+    if (isTech){        
         //Проверка Техработ
-        if ((time[3] == techTime[3]) && ((time[2] - 5) <= techTime[2]) ){
+        if (time[2] == techTime[1]){
             isTech = false;
-            newTech = true;
+            //newTech = true;
             break;
         }
         //Конец Техработ
-        endofTech[1] = techTime[1] - time[1] - 1;
-        endofTech[0] = 59 - time[2];
-        */
+        //endofTech[1] = techTime[1] - time[1] - 1;
+        //endofTech[0] = 59 - time[2];        
     }
     else{
-        for(var i = 0; i < 6; i++){  
-            /*
+        for(var i = 0; i < 6; i++){              
             //Проверка техработ
-            if ((time[3] == techTime[3]) && (time[1] >= techTime[0])){
+            if (time[2] == techTime[0]){
                 isTech = true;
-                endofTech[1] = techTime[1] - time[1] - 1;
-                endofTech[0] = 59 - time[2];
+                //endofTech[1] = techTime[1] - time[1] - 1;
+                //endofTech[0] = 59 - time[2];
                 break;
             }
-            */
             //Время суток
             if ((time[2] == raspTime[i][0]) && (time[3] == (raspTime[i][1] - 30))){
                 client.channels.get(timeChannel).send("```ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...```");
