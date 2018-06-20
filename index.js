@@ -143,9 +143,11 @@ function checkRasp(){
         //endofTech[0] = 59 - time[2];        
     }
     else{
-        for(var i = 0; i < 6; i++){              
+        for(var i = 0; i < 6; i++){   
+            console.log(i);
+            
             //Проверка техработ
-            if ((time[2] == (raspTime[i][0] - 1)) && (time[3] == 30)){
+            if ((time[2] == (techTime[0] - 1)) && (time[3] == 30)){
                 client.channels.get(timeChannel).send("```ВНИМАНИЕ! 30 минут до начала тех. работ!```");
             }  
             if (time[2] == techTime[0]){
@@ -154,7 +156,8 @@ function checkRasp(){
                 //endofTech[1] = techTime[1] - time[1] - 1;
                 //endofTech[0] = 59 - time[2];
                 break;
-            }
+            }            
+            
             //Время суток
             if ((time[2] == raspTime[i][0]) && (time[3] == (raspTime[i][1] - 30))){
                 client.channels.get(timeChannel).send("```ВНИМАНИЕ! 30 минут до наступления ночи, всем подготовиться...```");
@@ -173,8 +176,9 @@ function checkRasp(){
                 isDay = true;
                 break;
             }
+            console.log("Ночь?");
             //Ночь?
-            if (((time[2] == raspTime[i][0]) && ((time[3] > raspTime[i][1]) && (time[3] < 60))) || ((time[2] == (raspTime[i][0] + 1)) && ((time[3] > 0) && ((time[3] < raspTime[i][1] - 20))))){
+            if (((time[2] == raspTime[i][0]) && ((time[3] > raspTime[i][1]) && (time[3] < 60))) || ((time[2] == (raspTime[i][0] + 1)) && ((time[3] >= 0) && ((time[3] < raspTime[i][1] - 20))))){
                 isDay = false;
                 if (time[3] > 40){
                     endOfNight = 80 - time[3];
@@ -184,6 +188,7 @@ function checkRasp(){
                 }     
                 break;
             }            
+            console.log("День?");
             //День?
             if (i < 5){
                 if (time[2] < raspTime[i][0]){                   
@@ -206,15 +211,16 @@ function checkRasp(){
                 }
             }
             else{
-                if ((time[2] == (raspTime[i][0] + 1)) && (time[3] > 20)){
+                if ((time[2] == (raspTime[i][0] + 1)) && (time[3] >= 20)){
                     isDay = true;
                     endOfDay[1] = 25 - time[2];
                     endOfDay[0] = (60 - time[3]) + 40;
                 }
             }
+            console.log("Цикл");
         }
     }
-    console.log(`Время: ${time}. День: ${isDay}. Техработы: ${isTech} ${techTime} ${endofTech}`);
+    console.log(`Время: ${time}. День: ${isDay}. Техработы: ${isTech} ${techTime} | ${endofTech}. Конец дня: ${endOfDay}. Конец Ночи: ${endOfNight}`);
     status();
 }
 
@@ -268,7 +274,7 @@ function checkBoss(){
         var tmpSep = boss[0][i].split(':');
         tmpSep[0] = parseInt(tmpSep[0]);
         tmpSep[1] = parseInt(tmpSep[1]);
-        console.log(`i = ${i}, sep = ${tmpSep[0]}:${tmpSep[1]}, time = ${time[2]}:${time[3]}`);
+        //console.log(`i = ${i}, sep = ${tmpSep[0]}:${tmpSep[1]}, time = ${time[2]}:${time[3]}`);
         if ((((time[2] + 1) == tmpSep[0]) && ((time[3] - 30) == tmpSep[1])) || ((time[2] == tmpSep[0]) && ((time[3] + 30) == tmpSep[1]))){
             if (boss[time[1]][i] != ''){
                 client.channels.get(bossChannel).send(`\`\`\`asciidoc\r\nВнимание! Через 30 минут появится\r\n= ${boss[time[1]][i]} =\r\n\`\`\``);
