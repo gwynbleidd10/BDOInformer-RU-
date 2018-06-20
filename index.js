@@ -375,10 +375,10 @@ function whoNext(){
             tmpStr += `\r\n${dn[i]}:`;
         for(var j = 0; j < 6; j++){  
             if (boss[i][j] != ''){
-                tmpStr += ` ${boss[i][j]}`;
+                tmpStr += `\t${boss[i][j]}`;
             }
             else{
-                tmpStr += ` ОТДЫХ`;
+                tmpStr += `\tОТДЫХ`;
             }
         }
     }
