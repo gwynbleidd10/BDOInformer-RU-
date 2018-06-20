@@ -333,16 +333,17 @@ function checkBoss(){
 
 function whoNext(){
     var nDay = true;
+    var tmpStr;
     for(var i = 0; i < 6; i++){        
         var tmpSep = boss[0][i].split(':');
         tmpSep[0] = parseInt(tmpSep[0]);
         tmpSep[1] = parseInt(tmpSep[1]);
         if (((time[2] == tmpSep[0]) && (time[3] < tmpSep[1])) || (time[2] < tmpSep[0])){       
             if (boss[time[1]][i] != ''){
-                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1]][i]} =\r\nв\r\n= ${boss[0][i]} =\r\n\`\`\``;
+                tmpStr =  `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1]][i]} =\r\nв\r\n= ${boss[0][i]} =\r\n\`\`\``;
             }
             else if (boss[time[1]][i + 1] != ''){
-                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1]][i + 1]} =\r\nв\r\n= ${boss[0][i + 1]} =\r\n\`\`\``;
+                tmpStr =  `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1]][i + 1]} =\r\nв\r\n= ${boss[0][i + 1]} =\r\n\`\`\``;
             }
             else {
                 continue;
@@ -354,20 +355,20 @@ function whoNext(){
     if (nDay){
         if (time[1] < 7){
             if (boss[time[1] + 1][0] != ''){
-                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1] + 1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\n\`\`\``;
+                tmpStr =  `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1] + 1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\n\`\`\``;
             }
             else{
-                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1] + 1][1]} =\r\nв\r\n= ${boss[0][1]} =\r\n\`\`\``;
+                tmpStr =  `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[time[1] + 1][1]} =\r\nв\r\n= ${boss[0][1]} =\r\n\`\`\``;
             }             
         }
         else{
             if (boss[1][0] != ''){
-                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\n\`\`\``;
+                tmpStr =  `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[1][0]} =\r\nв\r\n= ${boss[0][0]} =\r\n\`\`\``;
             }
             else{
-                return `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[1][1]} =\r\nв\r\n= ${boss[0][1]} =\r\n\`\`\``;
+                tmpStr =  `\`\`\`asciidoc\r\nСледующий босс\r\n= ${boss[1][1]} =\r\nв\r\n= ${boss[0][1]} =\r\n\`\`\``;
             }
         }        
     }
-    return `\r\ntest\r\nasd`;
+    return `${tmpStr}\r\ntest\r\nasd`;
 }
