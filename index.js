@@ -54,8 +54,8 @@ client.on('message', message => {
     switch(message.content){
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - день или ночь. оставшееся время\n!boss - следующий босс"); break;
         case prefix + 'day': message.reply(nowDay()); break;
-        case prefix + 'жена': message.reply(death()); break;
-        case prefix + 'boss': client.users.get("265900474501300224").send("Оглянись..."); break;   
+        case prefix + 'жена': client.users.get("265900474501300224").send("Оглянись..."); break;   
+        case prefix + 'boss': message.reply(whoNext()); break;
         case prefix + 'test': message.reply('test'); break;    
     }
 });
