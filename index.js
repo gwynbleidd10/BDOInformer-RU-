@@ -145,7 +145,11 @@ function checkRasp(){
     else{
         for(var i = 0; i < 6; i++){              
             //Проверка техработ
+            if ((time[2] == (raspTime[i][0] - 1)) && (time[3] == 30)){
+                client.channels.get(timeChannel).send("```ВНИМАНИЕ! 30 минут до начала тех. работ!```");
+            }  
             if (time[2] == techTime[0]){
+                client.channels.get(timeChannel).send("```Тех. работы!```");
                 isTech = true;
                 //endofTech[1] = techTime[1] - time[1] - 1;
                 //endofTech[0] = 59 - time[2];
