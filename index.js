@@ -69,17 +69,11 @@ if (timeInform){
 
 var raspTime = [
     ['2','40'],
-    ['3','20'],
     ['6','40'],
-    ['7','20'],
     ['10','40'],
-    ['11','20'],
     ['14','40'],
-    ['15','20'],
     ['18','40'],
-    ['19','20'],
-    ['22','40'],
-    ['23','20']
+    ['22','40']
 ];
 var techTime = ['8','12','0', '0'];
 var isDay = true;
@@ -138,22 +132,22 @@ function getTech(){
 
 
 function checkRasp(){
-    getTime();    
-    for(var i = 0; i < 12;){  
-        if (isTech){
-            /*
-            //Проверка Техработ
-            if ((time[3] == techTime[3]) && ((time[2] - 5) <= techTime[2]) ){
-                isTech = false;
-                newTech = true;
-                break;
-            }
-            //Конец Техработ
-            endofTech[1] = techTime[1] - time[1] - 1;
-            endofTech[0] = 59 - time[2];
-            */
+    getTime();
+    if (isTech){
+        /*
+        //Проверка Техработ
+        if ((time[3] == techTime[3]) && ((time[2] - 5) <= techTime[2]) ){
+            isTech = false;
+            newTech = true;
+            break;
         }
-        else{
+        //Конец Техработ
+        endofTech[1] = techTime[1] - time[1] - 1;
+        endofTech[0] = 59 - time[2];
+        */
+    }
+    else{
+        for(var i = 0; i < 6; i++){  
             /*
             //Проверка техработ
             if ((time[3] == techTime[3]) && (time[1] >= techTime[0])){
@@ -170,60 +164,61 @@ function checkRasp(){
             }    
             if ((time[2] == raspTime[i][0]) && (time[3] == raspTime[i][1])){
                 client.channels.get(timeChannel).send("```Наступила ночь, у вас есть 40 минут повышенного опыта. Приятного фарма!```");
+                endOfNight = 40;
                 isDay = false;
                 break;
             }
-            if ((time[2] == raspTime[i + 1][0]) && (time[3] == raspTime[i + 1][1])){
+            if ((time[2] == (raspTime[i][0] + 1)) && (time[3] == (raspTime[i][1] - 20))){
                 client.channels.get(timeChannel).send("```И снова день, до следующей ночи 3 часа 20 минут. Расходимся!```");            
                 endOfDay[1] = 3;
+                endOfDay[0] = 20;
                 isDay = true;
                 break;
             }
-            //Конец дня
-            if ((time[2] < 22) && (i < 10)){
-                if (time[2] > raspTime[i + 2][0]){
-                    i += 2;
+            //Ночь?
+            if (((time[2] == raspTime[i][0]) && ((time[3] > raspTime[i][1]) && (time[3] < 60))) || ((time[2] == (raspTime[i][0] + 1)) && ((time[3] > 0) && ((time[3] < raspTime[i][1] - 20))))){
+                isDay = false;
+                if (time[3] > 40){
+                    endOfNight = 80 - time[3];
                 }
                 else{
-                    endOfDay[1] = raspTime[i + 2][0] - time[2];
+                    endOfNight = 20 - time[3];
+                }     
+                break;
+            }            
+            //День?
+            if (i < 5){
+                if (time[2] < raspTime[i][0]){
+                    //((time[2] == raspTime[i][0]) && (time[3] < raspTime[i][1]))                    
+                    isDay = true;
+                    endOfDay[1] = raspTime[i][0] - time[2];
+                    if (time[3] >= 40){
+                        endOfDay[0] = 100 - time[3];
+                        endOfDay[1] -= 1;
+                    }
+                    else{
+                        endOfDay[0] = 40 - time[3];   
+                    }    
                     break;
                 }
-            }        
-            else if (time[2] >= 22){
-                if ((raspTime[0][0] - time[2]) < 0){
-                    endOfDay[1] = 26 - time[2];
+                else if ((time[2] == raspTime[i][0]) && (time[3] < raspTime[i][1])){
+                    isDay = true;
+                    endOfDay[0] = raspTime[i][1] - time[3];
+                    endOfDay[1] = 0;
                     break;
                 }
-                else{
-                    endOfDay[1] = raspTime[0][0] - time[2];
-                    break;
+            }
+            else{
+                if ((time[2] == (raspTime[i][0] + 1)) && (time[3] > 20)){
+                    isDay = true;
+                    endOfDay[1] = 25 - time[2];
+                    endOfDay[0] = (60 - time[3]) + 40;
                 }
-            }   
+            }
         }
     }
     console.log(`Время: ${time}. День: ${isDay}. Техработы: ${isTech} ${techTime} ${endofTech}`);
-    dayNightTime();
     status();
-}
-
-function dayNightTime(){
-    if (!isDay){        
-        if (time[3] > 20){
-            endOfNight = 80 - time[3];
-        }
-        else{
-            endOfNight = 20 - time[3];
-        }        
-    }    
-    else{
-        if ((40 - time[3]) < 0){
-            endOfDay[0] = 100 - time[3];
-            endOfDay[1] -= 1;
-        }
-        else{
-            endOfDay[0] = 40 - time[3];
-        }        
-    }    
 }
 
 function nowDay(){
@@ -243,13 +238,11 @@ function status(){
     if (isTech){
         client.user.setActivity(`Техработы. ${endofTech[1]} ч. ${endofTech[0]} мин.`);
     }
+    else if (isDay){
+        client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
+    }
     else{
-        if (isDay){
-            client.user.setActivity(`День. ${endOfDay[1]} ч. ${endOfDay[0]} мин.`);
-        }
-        else{
-            client.user.setActivity(`Ночь. ${endOfNight} мин.`);
-        }
+        client.user.setActivity(`Ночь. ${endOfNight} мин.`);
     } 
 }
 
