@@ -137,7 +137,6 @@ function checkRasp(){
         if (time[2] == techTime[1]){
             isTech = false;
             //newTech = true;
-            break;
         }
         //Конец Техработ
         //endofTech[1] = techTime[1] - time[1] - 1;
