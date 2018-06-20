@@ -69,7 +69,7 @@ if (timeInform){
 
 var raspTime = [
     ['2','40'],
-    ['6','40'],
+    ['6','45'],
     ['10','40'],
     ['14','40'],
     ['18','40'],
@@ -188,8 +188,7 @@ function checkRasp(){
             }            
             //День?
             if (i < 5){
-                if (time[2] < raspTime[i][0]){
-                    //((time[2] == raspTime[i][0]) && (time[3] < raspTime[i][1]))                    
+                if (time[2] < raspTime[i][0]){                   
                     isDay = true;
                     endOfDay[1] = raspTime[i][0] - time[2];
                     if (time[3] >= 40){
