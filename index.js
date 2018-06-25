@@ -35,8 +35,8 @@ client.on('ready', () => {
     client.user.setActivity("Проверка");
     //getTech();
     //console.log('getTech выполнен');
-    checkRasp();
-    console.log('checkRasp выполнен');
+    //checkRasp();
+    //console.log('checkRasp выполнен');
     checkBoss();
     console.log('checkBoss выполнен');
 });
