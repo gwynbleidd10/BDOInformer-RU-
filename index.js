@@ -381,7 +381,7 @@ function whoNext(){
             }
         }        
     }
-    var dn = ['--\t\t','Пн\t\t','Вт\t\t','Ср\t\t','Чт\t\t','Пт\t\t','Сб\t\t','Вс\t\t'];
+    var dn = ['Дн\t\t','Пн\t\t','Вт\t\t','Ср\t\t','Чт\t\t','Пт\t\t','Сб\t\t','Вс\t\t'];
     for(var i = 0; i < 8; i++){
             tmpStr += `\r\n${dn[i]}\t\t`;
         for(var j = 0; j < 6; j++){  
