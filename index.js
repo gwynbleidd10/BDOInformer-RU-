@@ -383,13 +383,13 @@ function whoNext(){
     }
     var dn = ['--\t\t','Пн\t','Вт\t\t','Ср\t\t','Чт\t\t','Пт\t\t','Сб\t\t','Вс\t\t'];
     for(var i = 0; i < 8; i++){
-            tmpStr += `\r\n${dn[i]}`;
+            tmpStr += `\r\n${dn[i]}\t\t`;
         for(var j = 0; j < 6; j++){  
             if (boss2[i][j] != ''){
-                tmpStr += `${boss2[i][j]}`;
+                tmpStr += `${boss2[i][j]}\t\t`;
             }
             else{
-                tmpStr += `--`;
+                tmpStr += `--\t\t`;
             }
         }
     }
