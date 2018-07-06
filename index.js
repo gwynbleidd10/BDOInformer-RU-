@@ -14,6 +14,8 @@ const main = develop;//'438294563719872513'; //id канала для бота
 const prefix = '!'; //prefix бота
 
 const newPeople = true; //Приветствие новых пользователей
+const newRole = true; //Приветствие новых пользователей
+const newPRole = '464675430855606273'; //id канала для приветствия новых пользователей
 const newPChannel = '343145719915479042'; //id канала для приветствия новых пользователей
 const newPMessage = `Приветствуем в ги НАВЬ, `; //Приветственное сообщения для новых пользователей
 
@@ -43,10 +45,12 @@ client.on('ready', () => {
 
 //Приветствие новых пользователей
 client.on('guildMemberAdd', member => {      
-    if (newPeople){
-        member.addRole('464675430855606273');
+    if (newPeople){        
         client.channels.get(newPChannel).send(newPMessage + `${member}`);
-    }    
+    }   
+    if (newRole){        
+        member.addRole(newPRole);
+    }     
 });
 
 //Основные команды
