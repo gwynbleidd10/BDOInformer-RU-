@@ -42,8 +42,10 @@ client.on('ready', () => {
 });
 
 //Приветствие новых пользователей
-client.on('guildMemberAdd', member => {   
+client.on('guildMemberAdd', member => {      
     if (newPeople){
+        var role = member.guild.roles.find('name', 'Проходимцы и потеряшки');
+        member.addRole(role);
         client.channels.get(newPChannel).send(newPMessage + `${member}`);
     }    
 });
