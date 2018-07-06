@@ -44,8 +44,7 @@ client.on('ready', () => {
 //Приветствие новых пользователей
 client.on('guildMemberAdd', member => {      
     if (newPeople){
-        var role = member.guild.roles.find('193654001089118208');
-        member.addRole(role);
+        member.addRole('193654001089118208');
         client.channels.get(newPChannel).send(newPMessage + `${member}`);
     }    
 });
