@@ -9,15 +9,14 @@ const client = new Discord.Client();
 ////////////////////////////////////////
 
 const token = process.env.BOT_TOKEN; //BOT TOKEN
-const develop = '442299997048799253';
-const main = develop;//'438294563719872513'; //id канала для бота
+const main = '465416439038345217'; //id канала для бота
 const prefix = '!'; //prefix бота
 
 const newPeople = true; //Приветствие новых пользователей
 const newRole = true; //Приветствие новых пользователей
-const newPRole = '464675430855606273'; //id канала для приветствия новых пользователей
-const newPChannel = '343145719915479042'; //id канала для приветствия новых пользователей
-const newPMessage = `Приветствуем в ги НАВЬ, `; //Приветственное сообщения для новых пользователей
+const newPRole = '464675430855606273'; //id роли новых пользователей
+const newPChannel = '465416439038345217'; //id канала для приветствия новых пользователей
+const newPMessage = `Добро пожаловать в гильдию НАВЬ, `; //Приветственное сообщения для новых пользователей
 
 const bossInform = true; //Информирование о боссах
 const bossChannel = '438294563719872513'; //id канала для информирования о боссах
@@ -34,7 +33,7 @@ client.login(token);
 //Отладочная информация и первый запуск
 client.on('ready', () => {
     console.log('BDOInformer запущен!');
-    client.user.setActivity("Проверка");
+    client.user.setActivity("Порно", { type: 'WATCHING' });
     //getTech();
     //console.log('getTech выполнен');
     //checkRasp();
