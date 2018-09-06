@@ -34,7 +34,7 @@ client.login(token);
 client.on('ready', () => {
     console.log('BDOInformer запущен!');
     client.user.setActivity("Поs", { type: 'WATCHING' });
-    client.user.setPresence({ game: { name: 'С твоей мамкой', type: "streaming", url: "https://www.twitch.tv/vincentbutler"}}); 
+    client.user.setPresence({ game: { name: 'Наблюдение', type: "streaming", url: "https://www.twitch.tv/vincentbutler"}}); 
     //getTech();
     //console.log('getTech выполнен');
     //checkRasp();
@@ -60,7 +60,8 @@ client.on('message', message => {
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - день или ночь. оставшееся время\n!boss - следующий босс"); break;
         case prefix + 'day': message.reply(nowDay()); break;
         case prefix + 'boss': message.reply(whoNext()); break;
-        case prefix + 'stream': message.reply(stream()); break;
+        case prefix + 'poe': poe(); break;
+        case prefix + 'bdo': bdo(); break;
         case prefix + 'test': message.reply("ОНО ЖИВОЕ!", {tts: true}); break;    
     }
 });
@@ -69,8 +70,12 @@ client.on('message', message => {
 /////////////////Stream/////////////////
 ////////////////////////////////////////
 
-function stream(){
-    
+function poe(){
+    client.user.setPresence({ game: { name: 'Path Of Exile', type: "streaming", url: "https://www.twitch.tv/vincentbutler"}}); 
+};
+
+function bdo(){
+    client.user.setPresence({ game: { name: 'Black Desert', type: "streaming", url: "https://www.twitch.tv/cepreu_inq"}}); 
 };
 
 ////////////////////////////////////////
