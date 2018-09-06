@@ -34,7 +34,7 @@ client.login(token);
 client.on('ready', () => {
     console.log('BDOInformer запущен!');
     client.user.setActivity("Поs", { type: 'WATCHING' });
-    client.user.setPresence({ game: { name: 'С твоей мамкой', type: "streaming", url: "https://www.twitch.tv/vincentnsd"}}); 
+    client.user.setPresence({ game: { name: 'С твоей мамкой', type: "streaming", url: "https://www.twitch.tv/vincentbutler"}}); 
     //getTech();
     //console.log('getTech выполнен');
     //checkRasp();
