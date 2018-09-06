@@ -33,7 +33,8 @@ client.login(token);
 //Отладочная информация и первый запуск
 client.on('ready', () => {
     console.log('BDOInformer запущен!');
-    client.user.setActivity("Порно", { type: 'WATCHING' });
+    client.user.setActivity("Поs", { type: 'WATCHING' });
+    client.user.setPresence({ game: { name: 'С твоей мамкой', type: "streaming", url: "https://www.twitch.tv/vincentnsd"}}); 
     //getTech();
     //console.log('getTech выполнен');
     //checkRasp();
