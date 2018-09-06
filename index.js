@@ -60,9 +60,18 @@ client.on('message', message => {
         case prefix + 'h': message.reply("Список команд: \n!h - помощь\n!day - день или ночь. оставшееся время\n!boss - следующий босс"); break;
         case prefix + 'day': message.reply(nowDay()); break;
         case prefix + 'boss': message.reply(whoNext()); break;
+        case prefix + 'stream': message.reply(stream()); break;
         case prefix + 'test': message.reply("ОНО ЖИВОЕ!", {tts: true}); break;    
     }
 });
+
+////////////////////////////////////////
+/////////////////Stream/////////////////
+////////////////////////////////////////
+
+function stream(){
+    
+};
 
 ////////////////////////////////////////
 ////////////////Day/Night///////////////
