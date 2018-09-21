@@ -13,7 +13,7 @@ client.login(token);
 
 //Отладочная информация и первый запуск
 client.on('ready', () => {
-    rulesChannel.createInvite(options).then(function(newInvite){
+    client.rulesChannel.createInvite(options).then(function(newInvite){
         Console.log("https://discord.gg/" + newInvite.code)
         });
 });
